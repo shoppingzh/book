@@ -18,6 +18,9 @@ export default defineConfig({
       }, {
         text: '代码转译与polyfill',
         link: getFirstDocLink('project/babel')
+      }, {
+        text: '代码质量',
+        link: getFirstDocLink('project/quality')
       }]
     }, {
       text: '第三方库',
