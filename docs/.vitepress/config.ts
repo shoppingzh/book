@@ -21,6 +21,9 @@ export default defineConfig({
       }, {
         text: '代码质量',
         link: getFirstDocLink('project/quality')
+      }, {
+        text: 'Git',
+        link: getFirstDocLink('project/git')
       }]
     }, {
       text: '第三方库',
