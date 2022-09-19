@@ -31,6 +31,9 @@ export default defineConfig({
         text: 'echarts',
         link: getFirstDocLink('3rd/echarts')
       }]
+    }, {
+      text: 'Vue源码',
+      link: getFirstDocLink('source/vue')
     }],
     sidebar: autoGenerateSidebar(),
     socialLinks: [{
