@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import { autoGenerateSidebar, getFirstDocLink } from 'press-util'
 
 export default defineConfig({
-  base: '/',
+  base: process.env.NODE_ENV === 'development' ? '/' : '/book/',
   title: '晓阁',
   description: '晓平写文字的地方',
 
