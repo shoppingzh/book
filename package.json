@@ -7,6 +7,7 @@
   "author": "shoppingzh <xpzheng6@163.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^18.7.23",
     "autoprefixer": "^10.4.7",
     "less": "^4.1.3",
     "postcss": "^8.4.14",
