@@ -10,3 +10,6 @@ function instanceOf(o: any, constructor: Function): boolean {
 }
 
 ```
+
+`instanceof`缺点：
+- 无法检测基本数据类型，如`1 instanceof Number => false`
