@@ -17,7 +17,8 @@
   },
   "scripts": {
     "dev": "vitepress dev docs",
-    "build": "vitepress build docs"
+    "build": "vitepress build docs",
+    "build:root": "vitepress build docs --base=/"
   },
   "dependencies": {
     "element-plus": "^2.2.6",
