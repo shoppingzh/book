@@ -3,7 +3,7 @@ import { autoGenerateSidebar, getFirstDocLink } from 'press-util'
 
 export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/book/',
-  title: '晓阁',
+  title: '晓阁 Xiao',
   description: '晓平写文字的地方',
 
   themeConfig: {
@@ -26,12 +26,6 @@ export default defineConfig({
         link: getFirstDocLink('project/git')
       }]
     }, {
-      text: '第三方库',
-      items: [{
-        text: 'echarts',
-        link: getFirstDocLink('3rd/echarts')
-      }]
-    }, {
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
     }],
@@ -42,6 +36,9 @@ export default defineConfig({
     }, {
       icon: 'youtube',
       link: 'https://www.youtube.com/channel/UCxaFFcf1Ddur1Y9EesdwB8Q'
-    }]
+    }],
+    footer: {
+      copyright: 'Copyright © 2022 Xiao'
+    }
   }
 })
