@@ -3,7 +3,7 @@ import { autoGenerateSidebar, getFirstDocLink } from 'press-util'
 
 export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/book/',
-  title: '晓阁 Xiao',
+  title: '晓阁',
   description: '晓平写文字的地方',
 
   themeConfig: {
@@ -28,6 +28,9 @@ export default defineConfig({
     }, {
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
+    }, {
+      text: '算法',
+      link: getFirstDocLink('algorithm')
     }],
     sidebar: autoGenerateSidebar(),
     socialLinks: [{
