@@ -11,7 +11,7 @@ yarn dlx husky-init --yarn2 && yarn # Yarn 2+
 pnpm dlx husky-init && pnpm install # pnpm
 ```
 
-初始化完成后，目录下会生成`.husky`目录，该目录的结构为：
+初始化完成后，目录下会生成`.husky`目录：
 
 ```
 |── husky
@@ -21,7 +21,7 @@ pnpm dlx husky-init && pnpm install # pnpm
     |── pre-commit
 ```
 
-其中，`pre-commit`内容为：
+其中，`pre-commit`是husky自动创建的提交前钩子，其内容为：
 
 ```bash
 #!/usr/bin/env sh
@@ -31,7 +31,7 @@ npm test
 
 ```
 
-此时，当提交代码时将会执行`npm test`命令，由于该命令默认会打印一句话并退出，所以提交会发生错误而失败：
+当提交代码时将会执行`npm test`命令（由于该命令默认会打印一句话并退出，所以提交会发生错误而失败）：
 
 
 ![](./images/commit-failed.png)
