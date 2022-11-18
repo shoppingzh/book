@@ -37,4 +37,14 @@ npm test
 ![](./images/commit-failed.png)
 
 
+## 添加一个钩子
+
+
+```bash
+npx husky add .husky/post-commit 'echo "已提交：" & git log -1 HEAD'
+```
+
+以上命令会创建一个`post-commit`（提交后）的钩子，并打印提交的日志：
+
+![](./images/husky-create-hook.png)
 
