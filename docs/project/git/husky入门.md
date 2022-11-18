@@ -14,7 +14,7 @@ pnpm dlx husky-init && pnpm install # pnpm
 初始化完成后，目录下会生成`.husky`目录：
 
 ```
-|── husky
+|── .husky
     |── _
         |── .gitignore
         |── husky.sh
