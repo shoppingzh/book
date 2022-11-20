@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "element-plus": "^2.2.21",
-    "press-util": "0.0.4"
+    "press-util": "0.0.4",
+    "typeit": "^8.7.0"
   }
 }
