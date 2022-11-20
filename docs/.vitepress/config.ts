@@ -24,6 +24,9 @@ export default defineConfig({
       }, {
         text: 'Git',
         link: getFirstDocLink('project/git')
+      }, {
+        text: '路由',
+        link: getFirstDocLink('project/router')
       }]
     }, {
       text: 'Vue源码',
