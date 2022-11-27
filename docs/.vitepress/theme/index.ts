@@ -10,7 +10,8 @@ export default {
     app.use(ui)
     app.use(components)
     if (typeof window !== 'undefined') {
-      window.localStorage.setItem('vitepress-theme-appearance', 'dark')
+      // 默认暗黑模式
+      document.documentElement.classList.add('dark')
     }
   }
 }
