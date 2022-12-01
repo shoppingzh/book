@@ -27,6 +27,9 @@ export default defineConfig({
       }, {
         text: '路由',
         link: getFirstDocLink('project/router')
+      }, {
+        text: '其他',
+        link: getFirstDocLink('project/other')
       }]
     }, {
       text: 'Vue源码',
