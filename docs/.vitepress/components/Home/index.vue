@@ -17,7 +17,7 @@ onMounted(() => {
       '很高兴与你相遇，一同学习知识。',
       '希望你能玩得开心！'
     ],
-    speed: 50,
+    speed: 80,
     // loop: true,
     // loopDelay: 15000,
   })
