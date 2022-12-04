@@ -9,7 +9,6 @@ export default defineConfig({
   themeConfig: {
     nav: [{
       text: 'JavaScript',
-      link: getFirstDocLink('js'),
       items: [{
         text: '基础',
         link: getFirstDocLink('js/base')
