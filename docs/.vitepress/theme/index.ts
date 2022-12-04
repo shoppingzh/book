@@ -11,7 +11,7 @@ export default {
     app.use(components)
     if (typeof window !== 'undefined') {
       // 默认暗黑模式
-      document.documentElement.classList.add('dark')
+      // document.documentElement.classList.add('dark')
     }
   }
 }
