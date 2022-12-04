@@ -9,7 +9,17 @@ export default defineConfig({
   themeConfig: {
     nav: [{
       text: 'JavaScript',
-      link: getFirstDocLink('js')
+      link: getFirstDocLink('js'),
+      items: [{
+        text: '基础',
+        link: getFirstDocLink('js/base')
+      }, {
+        text: '对象',
+        link: getFirstDocLink('js/object')
+      }, {
+        text: '函数/作用域/闭包',
+        link: getFirstDocLink('js/function')
+      }],
     }, {
       text: '工程化',
       items: [{
@@ -38,7 +48,7 @@ export default defineConfig({
       text: '算法',
       link: getFirstDocLink('algorithm')
     }],
-    sidebar: autoGenerateSidebar(),
+    sidebar: autoGenerateSidebar() as any,
     socialLinks: [{
       icon: 'github',
       link: 'https://github.com/shoppingzh'
