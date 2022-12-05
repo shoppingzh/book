@@ -46,6 +46,9 @@ export default defineConfig({
     }, {
       text: '算法',
       link: getFirstDocLink('algorithm')
+    }, {
+      text: '好库分享',
+      link: 'libs.md'
     }],
     sidebar: autoGenerateSidebar() as any,
     socialLinks: [{
