@@ -1,19 +1,7 @@
 
+# TailwindCSS的使用，看这一篇就够了！
 
-- 安装
-- 开始使用
-- 自定义class的应用
-- 没有需要的变量？
-- 响应式
-- 暗黑模式
-- 放弃Sass/Less/Stylus等预编译器
-- 在style中使用Tailwind变量
-- 覆盖TailwindCSS配置
-- 使用插件快速解决问题
-   - 比例盒子插件
-   - 多行文本溢出插件
 
-<!-- [[toc]] -->
 
 ## 安装
 
@@ -108,7 +96,7 @@ TailwindCSS的基本原则是将每一个style语法转换为一个class，因�
 ![](./images/tailwind-search.png)
 :::
 
-## 怎么在自定义class中使用Tailwind语法？
+## 自定义class中使用Tailwind语法？
 
 有时候，你可能会因为重复的元素而不得不自定义一个class，如：
 
@@ -162,7 +150,7 @@ TailwindCSS提供了`@apply`语法，这种语法的使用手感与在html模板
 如果进行的是组件级别的抽象，并且有需要让他人覆盖class的场景，则必须使用自定义class的方案，别无他选。（推荐组件级别的class复用使用BEM的命名规范）
 :::
 
-## 在自定义样式中如何使用Tailwind的变量？
+## 自定义样式中使用Tailwind的变量？
 
 大多数情况下，我们完全可以组合使用Tailwind的原子化class来解决问题。但如果就是要使用自定义的样式代码，我们该如何使用到Tailwind配置中定义的变量呢？
 
@@ -199,28 +187,67 @@ div {
 :::
 
 
+
+## 使用Tailwind配置之外的变量？
+
+有时候，你不得不使用一些超出Tailwind配置之外的值，当你接到一个需求：
+
+> 在页面绘制一个宽139px，高77px，颜色为#165DFF的盒子。
+
+你找遍了TailwindCSS文档，都没找到可以直接使用的原子化class，这时候，你可能不得不写一些样式：
+
+```css
+div {
+  width: 139px;
+  height: 77px;
+  background-color: #165DFF;
+}
+```
+
+如果是这样，那岂不是违背了TailwindCSS宣称的 **让开发人员不离开html** 的目标？
+
+是的！你永远可以相信TailwindCSS！！因为这种情况，它都考虑到了：
+
+```html
+<div class="w-[139px] h-[77px] bg-[#165DFF]"></div>
+```
+
+<div class="w-[139px] h-[77px] bg-[#165DFF]"></div>
+
+::: tip
+使用这种方法有两个好处：
+1. 开发人员不用离开html，手感还是那个手感，效率更高；
+2. 同样的class还是只生成一份样式（10个`w-[139px]`最终只会生成一份样式代码），减少了打包后的样式文件大小
+:::
+
+::: warning 注意
+尽管这种方法可以优雅地解决问题，但这种 **魔法值** 的方案并不被推荐，因为事实上，这种做法会让样式体系超出规范的范围。如果项目中充斥着这种代码，会给后期的维护造成困难。
+
+参考文档：[https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)
+:::
+
 ## 全面且好用的响应式方案
 
-在`TailwindCSS`中写响应式简直是福音，例如这个蓝色的盒子：
+在`TailwindCSS`中写响应式简直是福音，例如这个绿色（如果你使用PC访问，将是蓝色）的盒子：
 
 
 <div class="w-32 h-32 bg-green-500 md:bg-blue-500" />
 
 ```html
-<div class="w-32 h-32 bg-blue-500" />
+<div class="w-32 h-32 bg-green-500" />
 ```
 
-如果要想让其在`768px`以下的屏幕上显示为绿色，你需要这样：
+如果要想让其在`768px`以上的屏幕上显示为蓝色，你需要这样：
 
 ```css
-@media (max-width: 768) {
+@media (min-width: 768px) {
   div {
-    @apply bg-green-500;
+    @apply bg-blue-500;
   }
 }
 ```
 
-而`TailwindCSS`只需要多加一点代码：
+而`TailwindCSS`只需要一行代码：
 
 ```html
 <div class="w-32 h-32 bg-green-500 md:bg-blue-500" />
@@ -230,4 +257,167 @@ div {
 
 `TailwindCSS`响应式的规则为：
 
-1. **`mobile first`**，即**手机端优先**，所有的样式都是考虑在手机端显示最佳
+1. **`mobile first`**，即**手机端优先**，你也可以理解为，什么断点都不设置就相当于断点为0；
+2. 断点的含义是 **大于等于**，即`min-width`，而非`max-width`。具体可参考文档：[https://tailwindcss.com/docs/responsive-design#targeting-mobile-screens](https://tailwindcss.com/docs/responsive-design#targeting-mobile-screens)
+
+> 具体响应式断点可参考文档：[https://tailwindcss.com/docs/screens](https://tailwindcss.com/docs/screens)
+
+::: details 高级用法
+你甚至可以结合任意值语法，实现各种变态的响应式需求，如：
+
+> 下面的这个盒子，让它在1300px以下（包含1300px）屏幕下显示绿色，以上显示蓝色。
+
+<div class="w-32 h-32 max-[1300px]:bg-green-500 bg-blue-500"></div>
+
+```html
+<div class="w-32 h-32 max-[1300px]:bg-green-500 bg-blue-500"></div>
+```
+
+为TailwindCSS的设计拍案叫绝！！
+
+:::
+
+## 暗黑模式
+
+使用暗黑模式前，你需要在`tailwind.config.js`中配置：
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class',
+  // more options...
+}
+
+```
+
+然后，你只需要少量的代码，就可以使用暗黑模式了：
+
+```html
+<div class="w-32 h-32 bg-blue-500 dark:bg-green-500"></div>
+```
+
+<div class="w-32 h-32 bg-blue-500 dark:bg-green-500"></div>
+
+> 点击右上角切换暗黑模式，上方的蓝色盒子将变成绿色盒子。
+
+更多使用方法可参考文档：[https://tailwindcss.com/docs/dark-mode](https://tailwindcss.com/docs/dark-mode)
+
+## 重写/覆盖Tailwind配置
+
+Tailwind的默认配置与团队的UI规范有出入？莫担心，TailwindCSS提供了一整套的重写、覆盖默认配置的方案，细粒度到每一个属性。
+
+
+举个栗子，使用Tailwind的配置来实现`Arco Design`的字体颜色规范：
+
+![](./images/tailwind-acro.png)
+
+
+```js
+// tailwind.config.js
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    extend: {
+      textColor: { // [!code focus:5]
+        primary: '#1D2129',
+        regular: '#4E5969',
+        secondary: '#86909C',
+        disabled: '#C9CDD4',
+      }
+    },
+  },
+  // ...
+}
+```
+
+然后就可以使用了：
+
+```html
+<span class="text-primary">主色</span> / 
+<span class="text-regular">常规色</span> / 
+<span class="text-secondary">次要色</span> / 
+<span class="text-disabled">禁用色</span> / 
+```
+
+效果如下：
+
+<span class="text-primary">主色</span> / 
+<span class="text-regular">常规色</span> / 
+<span class="text-secondary">次要色</span> / 
+<span class="text-disabled">禁用色</span> / 
+
+> 配置太多，就不赘述了，具体可参考：[https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js](https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js)
+
+
+
+## 放弃使用预处理器
+
+在开始本小节，请读者思考一个问题：
+
+> Sass/Less/Stylus等预处理器，给我们带来了什么？
+
+在没有预处理器前，我们的CSS代码是这样的：
+
+```css
+.foo {
+  font-size: 12px;
+}
+.foo .bar {
+  font-size: 14px;
+}
+```
+
+有了预处理器后，代码被简化了：
+
+```scss
+.foo {
+  font-size: 12px;
+  .bar {
+    font-size: 14px;
+  }
+}
+```
+
+预处理器在 `嵌套语法`、`变量`、`常用函数`、`逻辑处理` 等方面相比原生CSS有更大的优势，它可以让编写CSS代码的效率变得更高。
+
+但是！！请注意！！当我们使用TailwindCSS时，实际推崇的是TailwindCSS官方“标榜”（实际已经不是标榜了，很多都做
+到了）的 **不离开html** 、**少样式代码甚至零样式代码** 的价值观。
+
+
+::: tip 总结
+预处理器的核心优势是为了让开发人员更快书写样式代码，而TailwindCSS旨在消除样式代码，既然开发人员都不用写样式代码了，那还需要预处理器干嘛？:smile:
+:::
+
+因此，TailwindCSS官方极力推荐在项目中移除预处理器，具体可参考文档：[https://tailwindcss.com/docs/using-with-preprocessors](https://tailwindcss.com/docs/using-with-preprocessors)
+
+**如果仍然需要使用嵌套语法，怎么办？**
+
+TailwindCSS封装了[postcss-nested](https://github.com/postcss/postcss-nested)与[postcss-nesting](https://github.com/jonathantneal/postcss-nesting)插件，抛出了一个新的postcss插件，你只需要在`postcss.config.js`文件中加入以下代码，即可在css文件中使用嵌套语法了：
+
+```js
+module.exports = {
+  plugins: {
+    'tailwindcss/nesting': {}, // [!code focus]
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+```
+
+更多细节可参考：[https://tailwindcss.com/docs/using-with-preprocessors#nesting](https://tailwindcss.com/docs/using-with-preprocessors#nesting)
+
+
+::: warning 注意
+实际上，当你在sass/scss/less/styl文件中使用Tailwind语法时，可能会发生错误的预期甚至错误，因为TailwindCSS的某些语法可能会与预处理器的语法冲突，如在sass文件中使用`theme`函数会得到不同的预期，因为sass中也存在这个函数，而这种写法会让sass预处理器优先处理这个函数，而实际的期望是希望后处理器来处理。
+:::
+
+::: details 预处理器的未来？
+TODO
+:::
+
+
+***
+
+[[toc]]

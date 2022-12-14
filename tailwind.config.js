@@ -6,7 +6,14 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      textColor: {
+        primary: '#1D2129',
+        regular: '#4E5969',
+        secondary: '#86909C',
+        disabled: '#C9CDD4',
+      }
+    },
   },
   plugins: [],
 }
