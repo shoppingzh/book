@@ -44,9 +44,6 @@ export default defineConfig({
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
     }, {
-      text: '算法',
-      link: getFirstDocLink('algorithm')
-    }, {
       text: '杂谈',
       link: getFirstDocLink('others')
     }],
