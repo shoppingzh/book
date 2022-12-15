@@ -1,0 +1,22 @@
+:root {
+  /* --vp-c-brand: theme('colors.b-warn.DEFAULT');
+  --vp-c-brand-light: theme('colors.b-warn.hover');
+  --vp-c-brand-lighter: theme('colors.orange.200');
+  --vp-c-brand-dark: theme('colors.b-warn.active');
+  --vp-c-brand-darker: theme('colors.orange.800'); */
+
+
+  /* 文字色 */
+  --vp-c-text-1: theme('textColor.primary');
+  --vp-c-text-2: theme('textColor.regular');
+  --vp-c-text-3: theme('textColor.secondary');
+  --vp-c-text-4: theme('textColor.disabled');
+
+}
+
+.dark {
+  --vp-c-text-1: #F6F6F6;
+  --vp-c-text-2: #DFDFDF;
+  --vp-c-text-3: #C5C5C5;
+  --vp-c-text-4: #ABABAC;
+}
