@@ -13,6 +13,9 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.svg',
     nav: [{
+      text: '首页',
+      link: '/',
+    }, {
       text: 'JavaScript',
       items: [{
         text: '基础',
