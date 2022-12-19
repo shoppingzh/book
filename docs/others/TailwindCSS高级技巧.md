@@ -19,7 +19,7 @@
 
 幸好TailwindCSS为我们提供了`preset`的特性，你只需要几个简单的步骤就可以将配置抽离出去：
 
-**1. 新建`tailwind.preset.js`**
+**1. 新建 `tailwind.preset.js`**
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -38,7 +38,7 @@ module.exports = {
 
 > 合并规则可参考：[https://tailwindcss.com/docs/presets#merging-logic-in-depth](https://tailwindcss.com/docs/presets#merging-logic-in-depth)
 
-**2. 配置`tailwind.config.js`**
+**2. 配置 `tailwind.config.js`**
 
 ```js
 /** @type {import('tailwindcss').Config} */
