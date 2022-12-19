@@ -58,5 +58,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    '@tailwindcss/aspect-ratio',
+    require('@tailwindcss/line-clamp'),
+  ],
 }
