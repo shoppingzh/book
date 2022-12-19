@@ -73,9 +73,86 @@ module.exports = {
 }
 ```
 
+注意
+
 ## 使用插件提高开发效率
 
-TODO
+CSS的能力相比JS要弱得多，所以，针对CSS的插件其实主要是对一些常用样式进行封装，形成所谓 **CSS组件**，比如下方的代码：
+
+```css
+.button {
+  display: inline-block;
+  padding: 5px 12px;
+  text-align: center;
+  background-color: orange;
+  color: #fff;
+}
+```
+
+上述代码实现了一个按钮的CSS组件，在TailwindCSS中，你可以认为它是一个名为`button`的插件。当开发人员安装此插件，就可以通过简单添加一个class的方式实现快速编码。
+
+以下简单介绍两款比较常用的官方插件的安装及使用方法：
+
+**安装插件**
+
+```bash
+pnpm i -D @tailwindcss/line-clamp @tailwindcss/aspect-ratio
+# yarn add -D @tailwindcss/line-clamp @tailwindcss/aspect-ratio
+# npm i -D @tailwindcss/line-clamp @tailwindcss/aspect-ratio
+```
+
+**注册插件**
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/**/*.{vue,js,ts,jsx,tsx}'
+  ],
+  plugins: [ // [!code focus:4]
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
+}
+
+```
+
+**line-clamp插件使用方法**
+
+
+```vue
+<template>
+  <div class="line-clamp-3 text-secondary">
+    <span v-for="x in 100" :key="x">我是一段文本</span>
+  </div>
+</template>
+```
+
+<div class="line-clamp-3 text-secondary">
+  <span v-for="x in 100" :key="x">我是一段文本</span>
+</div>
+
+**aspect-ratio插件使用方法**
+
+生成一个常用视频（16:9）的比例盒子：
+
+```html
+<div class="w-[400px] aspect-video bg-blue-300">
+  <video
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+    class="w-full h-full"
+    controls />
+</div>
+```
+
+
+<div class="w-[400px] aspect-video bg-blue-300">
+  <video
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+    class="w-full h-full"
+    controls />
+</div>
+
 
 ## 又爱又恨的Preflight特性
 
