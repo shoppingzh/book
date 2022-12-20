@@ -73,7 +73,13 @@ module.exports = {
 }
 ```
 
-注意
+你可能已经注意到，`presets`配置是一个数组，是的，TailwindCSS允许配置多个预设，然后从上至下进行合并，如果多个preset存在同样的配置，则后者会覆盖前者。
+
+::: tip
+`presets` 可配置多个提供了更细粒度化拆分配置的可能性，你可以将一个Tailwind配置，按照不同的模块进行拆分，使用时，根据需要组合使用。
+
+这种拆分形式相当于在配置层面进行原子化，看来TailwindCSS无处不散发着 **原子化** 的风味，Respect！
+:::
 
 ## 使用插件提高开发效率
 
@@ -152,6 +158,7 @@ module.exports = {
     class="w-full h-full"
     controls />
 </div>
+
 
 
 ## 又爱又恨的Preflight特性
