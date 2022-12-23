@@ -28,6 +28,9 @@ export default defineConfig({
         link: getFirstDocLink('js/function')
       }],
     }, {
+      text: 'CSS',
+      link: getFirstDocLink('css'),
+    }, {
       text: '工程化',
       items: [{
         text: '代码质量与工作流',
