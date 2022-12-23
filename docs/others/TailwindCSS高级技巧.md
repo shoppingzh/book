@@ -163,4 +163,106 @@ module.exports = {
 
 ## 又爱又恨的Preflight特性
 
-TODO
+**preflight** 是TailwindCSS内置的一套全局样式，其作用类似于 [normalize.css](https://github.com/necolas/normalize.css) / [modern-normalize](https://github.com/sindresorhus/modern-normalize) （TailwindCSS建立在modern-normalize之上）。
+
+preflight主要修改的全局样式情况：
+
+- 为所有元素设置box-sizing为 `border-box`
+- 为所有元素设置了一个宽度为0，风格为 `solid` 的边框（这里有坑，后面会提到）
+- 去掉body/h1/h2/h3/h4/h5/h6/p等标签的 `margin`
+- 设置h1/h2/h3/h4/h5/h6的字体大小为网页默认字体
+- 去掉a标签的颜色和下划线
+- 去掉按钮的背景色
+- 去掉ol/ul的列表风格
+- 设置textarea只能纵向伸缩
+- 重设input/textarea的placholder颜色
+- **img/video/audio/svg/canvas/iframe等标签被设置为块级盒子**
+- 设置图片、视频的最大宽度为100%，以防溢出父级视区内
+
+#### 禁用此特性
+
+preflight默认是跟随 `@tailwind base` 被注入到你的应用中的，如果不想使用这个特性，可以在配置中新增一行：
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  corePlugins: {
+    preflight: false
+  },
+  // ...
+}
+```
+
+::: tip 个人看法
+我个人不喜欢使用这个特性，一般会关掉，理由有三：
+1. 一般我会在项目中引用 `normalize.css` 或 `modern-normalize` 库，如果使用preflight，其实有部分工作是重复的；
+2. preflight主要是对html的一些原生标签进行样式重置，而像h1/h2/h3/h4/h5/h6/ol/ul/p等标签，我喜欢使用div标签代替，虽然会降低语义化，但是效率提升了；
+3. 我不喜欢img标签被设置为块级盒子这个特性，因为这很反直觉，给开发人员带来了额外的学习成本。
+:::
+
+#### 边框默认样式的坑
+
+如果你禁用了这个特性，在设置边框时需要注意一下写法的不同。TailwindCSS官方推荐的边框写法：
+
+```html
+<div class="border-t border-gray-200" />
+```
+
+结合preflight的全局样式：
+
+```css
+* {
+  border-width: 0;
+  border-style: solid;
+}
+```
+
+最终，合成的样式将会是：
+
+```css
+div {
+  border-width: 0;
+  border-top-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+```
+
+但是，如果禁用掉preflight，则最终合成的样式将会是：
+
+```css
+div {
+  border-top: 1px;
+  border-color: #e5e7eb;
+}
+```
+
+此时，边框将会不存在，因为没有设置边框的风格。
+
+因此，**你需要为每个设置边框的场景都设置边框样式**：
+
+```html
+<div class="border-t border-solid border-gray-200" />
+```
+
+这种写法的问题就更大了，除了上边框是灰色外，其他边也会出现边框，因为html中所有元素的默认边框宽度为1px。为了去掉其他边的边框，你还需要手动处理：
+
+```html
+<div class="border-t border-solid border-gray-200 border-l-0 border-r-0 border-b-0" />
+```
+
+这？？？也太痛苦了，所以，个人推荐手动加入一些全局样式：
+
+```css
+*, *:before, *:after {
+  border-width: 0;
+  border-style: solid;
+}
+```
+
+这样，就跟开启了preflight特性的效果保持一致了。
+
+::: tip
+反向操作，你可以在启用preflight的前提下，将img等标签设置为行内盒子。
+:::
+
