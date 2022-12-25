@@ -9,9 +9,11 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/book/',
   title: 'Xpzheng\'s Blog',
   description: '晓平写文字的地方',
+  lastUpdated: true,
 
   themeConfig: {
     logo: '/logo.svg',
+    lastUpdatedText: '最近更新于：',
     nav: [{
       text: '首页',
       link: '/',
