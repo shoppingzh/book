@@ -20,3 +20,15 @@
   --vp-c-text-3: #C5C5C5;
   --vp-c-text-4: #ABABAC;
 }
+
+.VPSidebarGroup .VPLink.link {
+  @apply py-[2px] my-[6px];
+  & .link-text {
+    @apply text-sm text-primary dark:text-gray-100;
+  }
+  &.active {
+    .link-text {
+      color: var(--vp-c-brand);
+    }
+  }
+}

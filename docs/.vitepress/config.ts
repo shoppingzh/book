@@ -15,25 +15,19 @@ export default defineConfig({
     logo: '/logo.svg',
     lastUpdatedText: '最近更新于：',
     nav: [{
-      text: '首页',
-      link: '/',
+      text: '🏡首页',
+      link: '/'
     }, {
-      text: 'JavaScript',
-      items: [{
-        text: '基础',
-        link: getFirstDocLink('js/base')
-      }, {
-        text: '对象',
-        link: getFirstDocLink('js/object')
-      }, {
-        text: '函数/作用域/闭包',
-        link: getFirstDocLink('js/function')
-      }],
+      text: '🌴技术栈',
+      link: '/fe',
     }, {
-      text: 'CSS',
+      text: '🍳JavaScript',
+      link: getFirstDocLink('js'),
+    }, {
+      text: '🍭CSS',
       link: getFirstDocLink('css'),
     }, {
-      text: '工程化',
+      text: '🍔工程化',
       items: [{
         text: '代码质量与工作流',
         link: getFirstDocLink('project/quality')
@@ -57,7 +51,7 @@ export default defineConfig({
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
     } */, {
-      text: '杂谈',
+      text: '🌎杂谈',
       link: getFirstDocLink('others')
     }],
     sidebar: autoGenerateSidebar() as any,
