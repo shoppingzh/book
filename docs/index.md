@@ -1,5 +1,5 @@
 ---
-lastUpdate: false
+lastUpdated: false
 ---
 
 <Home />
