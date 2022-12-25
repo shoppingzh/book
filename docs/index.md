@@ -1,5 +1,4 @@
 ---
-layout: page
 lastUpdate: false
 ---
 
