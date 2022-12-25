@@ -23,6 +23,8 @@
     "build:root": "vitepress build docs --base=/"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
+    "animate.css": "^4.1.1",
     "element-plus": "^2.2.25",
     "press-util": "0.0.4",
     "typeit": "^8.7.0"

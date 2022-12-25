@@ -2,6 +2,7 @@ import Theme from 'vitepress/theme'
 import ui from './ui'
 import components from '../components'
 import { EnhanceAppContext } from 'vitepress'
+import 'animate.css/animate.min.css'
 import '../styles/index.less'
 
 export default {
