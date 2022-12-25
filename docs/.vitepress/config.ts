@@ -17,16 +17,7 @@ export default defineConfig({
       link: '/',
     }, {
       text: 'JavaScript',
-      items: [{
-        text: '基础',
-        link: getFirstDocLink('js/base')
-      }, {
-        text: '对象',
-        link: getFirstDocLink('js/object')
-      }, {
-        text: '函数/作用域/闭包',
-        link: getFirstDocLink('js/function')
-      }],
+      link: getFirstDocLink('js'),
     }, {
       text: 'CSS',
       link: getFirstDocLink('css'),
