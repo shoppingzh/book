@@ -13,16 +13,19 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.svg',
     nav: [{
-      text: '首页',
-      link: '/',
+      text: '🏡首页',
+      link: '/'
     }, {
-      text: 'JavaScript',
+      text: '🌴技术栈',
+      link: '/fe',
+    }, {
+      text: '🍳JavaScript',
       link: getFirstDocLink('js'),
     }, {
-      text: 'CSS',
+      text: '🍭CSS',
       link: getFirstDocLink('css'),
     }, {
-      text: '工程化',
+      text: '🍔工程化',
       items: [{
         text: '代码质量与工作流',
         link: getFirstDocLink('project/quality')
@@ -46,7 +49,7 @@ export default defineConfig({
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
     } */, {
-      text: '杂谈',
+      text: '🌎杂谈',
       link: getFirstDocLink('others')
     }],
     sidebar: autoGenerateSidebar() as any,
