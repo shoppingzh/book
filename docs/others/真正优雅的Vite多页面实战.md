@@ -1,4 +1,4 @@
-
+# 真正优雅的Vite多页面实战
 
 ## Vite如何支持多页？
 [https://cn.vitejs.dev/guide/build.html#multi-page-app](https://cn.vitejs.dev/guide/build.html#multi-page-app)
