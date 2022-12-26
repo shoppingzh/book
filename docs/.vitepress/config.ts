@@ -6,7 +6,7 @@ const juejinLogo = `<svg width="36" height="28" viewBox="0 0 36 28" fill="none" 
 </svg>`
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'development' ? '/' : '/book/',
+  base: process.env.NODE_ENV === 'development' ? '/' : '/',
   title: 'Xpzheng\'s Blog',
   description: '晓平写文字的地方',
   lastUpdated: true,
