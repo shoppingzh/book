@@ -96,5 +96,46 @@ npx eslint src
 
 ## 与Prettier配合使用
 
-TODO
+**安装**
 
+```bash
+pnpm i -D prettier eslint-config-prettier @types/prettier
+# yarn add -D prettier eslint-config-prettier @types/prettier
+# npm i -D prettier eslint-config-prettier @types/prettier
+```
+
+**新建prettier配置文件**
+
+在工程根目录下新建 `.prettierrc.js` 文件，内容如下：
+
+```js
+/** @type {import('prettier').Config} */
+module.exports = {
+  semi: false,
+  singleQuote: true,
+  trailingComma: 'all',
+}
+```
+
+**配置eslint**
+
+在 `.eslintrc.js` 文件中配置：
+
+```js
+module.exports = {
+  extends: [
+    // ...
+    'prettier', // 保证prettier位于最后
+  ],
+  rules: {
+  },
+  // ...
+}
+
+```
+
+::: tip
+`eslint-config-prettier` 的原理是关掉与prettier配置相冲突的eslint配置。
+
+更多请见：[https://github.com/prettier/eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)
+:::
