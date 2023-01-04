@@ -94,3 +94,7 @@ module.exports = {
 npx eslint src
 ```
 
+## 与Prettier配合使用
+
+TODO
+
