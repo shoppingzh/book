@@ -10,6 +10,9 @@ export default defineConfig({
   title: 'Xpzheng\'s Blog',
   description: '晓平写文字的地方',
   lastUpdated: true,
+  head: [
+    ['link', { rel: 'icon', href: '/logo.svg' }]
+  ],
 
   themeConfig: {
     logo: '/logo.svg',
