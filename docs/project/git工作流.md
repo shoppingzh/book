@@ -1,3 +1,5 @@
+# git工作流
+
 ![](./images/git-workflow.jpg)
 
 ## husky入门
@@ -57,7 +59,20 @@ npx husky add .husky/post-commit 'echo "已提交：" & git log -1 HEAD'
 
 ## 提交前代码的美化与校验
 
-TODO
+接下来，我们将通过 `husky` 添加一个 `pre-commit` 钩子，在提交代码前，通过Prettier美化代码和ESLint检查代码。
+
+```bash
+npx husky add .husky/pre-commit
+```
+
+然后，在 `.husky/pre-commit` 文件下编辑：
+
+```bash
+prettier --write src/**/*.{js,ts}
+eslint src/**/*.{js,ts}
+```
+
+
 
 ## 提交日志规范
 

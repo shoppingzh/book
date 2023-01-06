@@ -32,25 +32,7 @@ export default defineConfig({
       link: getFirstDocLink('css'),
     }, {
       text: '🍔 工程化',
-      items: [{
-        text: '代码质量与工作流',
-        link: getFirstDocLink('project/quality')
-      }, /* {
-        text: '路由',
-        link: getFirstDocLink('project/router')
-      }, */ /* {
-        text: '其他',
-        link: getFirstDocLink('project/other')
-      }, */ {
-        text: '性能优化',
-        link: getFirstDocLink('project/performance')
-      }, {
-        text: '代码转译与polyfill',
-        link: getFirstDocLink('project/babel')
-      }, {
-        text: '实战',
-        link: getFirstDocLink('project/practice')
-      }]
+      link: getFirstDocLink('project')
     }/* , {
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
