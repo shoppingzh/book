@@ -151,7 +151,58 @@ npx lint-staged
 
 ## 提交中：日志规范
 
-TODO
+对提交日志进行规范有几个好处：
+
+1. 一致的提交日志方便查阅与定位问题；
+2. 好的日志规范可以方便未来生成清晰的版本日志。
+
+提交日志的校验主要依赖于 [commitlint](https://github.com/conventional-changelog/commitlint) 这个库，以下介绍它与 `husky` 配合使用的方法。
+
+
+**安装**
+
+```bash
+pnpm i -D @commitlint/cli @commitlint/config-conventional
+# yarn add -D @commitlint/cli @commitlint/config-conventional
+# npm i -D @commitlint/cli @commitlint/config-conventional
+```
+
+**新增配置文件**
+
+在项目根目录下新增`commitlint.config.js`文件，这里我们继承一个常用的配置即可：
+
+```js
+module.exports = {
+  extends: [
+    '@commitlint/config-conventional'
+  ]
+};
+```
+
+**与husky配合**
+
+
+因为`husky`可以轻松管理git钩子，我们可以为git仓库新增一个`commit-msg`的钩子，在该钩子里拿到用户的提交日志并校验，如果提交日志不符合规范，则抛出错误。
+
+首先，我们使用husky新增一个`commit-msg`钩子：
+
+```bash
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'
+```
+
+然后，提交时就可以校验日志是否符合规范了：
+
+![](./images/husky-commitlint-error.png)
+
+
+***
+
+::: details 常见的git钩子
+
+![](./images/git-hooks.png)
+
+:::
+
 
 ## 提交后：ChangeLog
 
