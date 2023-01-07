@@ -1,6 +1,22 @@
 # git工作流
 
+团队协作开发从来不是一件易事，要想让开发、发布、迭代的整个流程井井有条，我们需要思考的问题很多：
+
+- 如何保证所有开发者写出的代码是美观且一致的？
+- 如何防止可能存在问题的代码被提交到仓库？
+- 如何借助工具来约束协作流程，使用规定代替约定，降低开发者的心智负担？
+
+对于一个前端开发者而言，开发过程中的工作流大致如下图所示：
+
 ![](./images/git-workflow.jpg)
+
+流程中的关键节点都有对应的第三方库来为我们快速地解决问题，组合使用这些库，我们可以搭建出一个非常标准化的git工作流。接下来我将详细描述整个标准化流程的搭建过程。
+
+::: warning 注意
+以下流程的搭建只是一个最小版的最佳实践，读者朋友在阅读时，需要从原理出发去理解问题，切不可按照文中的流程机械性地复刻操作，这样是不得灵魂的。
+
+每个章节都有高级的实践方法，后续我会补充一个高级实践篇，讲述特定场景下的高级用法。
+:::
 
 ## husky入门
 
@@ -204,9 +220,76 @@ npx husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'
 :::
 
 
-## 提交后：ChangeLog
+## 提交后：生成版本日志
 
-TODO
+通过对提交日志的校验，我们已经能够获得分类清晰且标准化的提交日志了。接下来需要将它们整理到版本的更新日志中，例如：
+
+::: info 版本日志
+#### V1.0.0
+
+新特性：
+- 支持上传文件
+- 支持从用户列表中选择用户
+
+修复：
+- 标签添加失败的问题
+
+:::
+
+这种人为整理版本日志的方式最大的优点就是：灵活。但也带来了以下缺点：
+
+- 一致性弱。因为过于灵活，所以多个版本日志可能存在不一致的情况；
+- 工作量大，麻烦。每次版本更新，都要手动整理提交日志，过于麻烦。
+
+::: tip
+因为版本日志其实只要客观反映本次版本更新的内容即可，完整、一致才是其追求的目标，因此，使用工具生成日志相比人工整理更为合理，也更加方便。
+:::
+
+[conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli) 是一个读取git提交日志并生成版本日志的库。下面介绍它的使用方法：
+
+**安装conventional-changelog-cli**
+
+```bash
+pnpm i -D conventional-changelog-cli
+# yarn add -D conventional-changelog-cli
+# npm i -D conventional-changelog-cli
+```
+
+**在 `package.json` 中新增脚本**
+
+```json
+{
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+  },
+}
+```
+
+以后，你需要按照这样的工作流进行开发：
+
+1. 修改代码并提交
+2. 修改 `package.json` 中的版本号
+3. 执行 `npm run changelog` 生成日志
+4. 提交 `CHANGELOG.md` 文件
+5. 推送提交
+
+![](./images/git-changelog.png)
+
+如上为自动生成的提交日志。
+
+## 总结
+
+整个过程中使用到了很多的第三方库（ESLint / Stylelint / Prettier / husky / commitlint / conventional-changelog-cli等），每个库各司其职、充分解耦，这样带来的好处是我们可以任意组合进行应用，也可以将过程中的某个库替换为其他的实现。
+
+同时，我们也可以思考另一个方向：
+
+因为整个工作流的搭建其实还是蛮复杂的，是否可以开发一个更上层的库，默认内置以上流程中的第三方库，可以做到开箱即用，而不需要每次都重新搭建？
+
+不妨留下一个思考的新方向。
+
+END.
+
+
 
 
 
