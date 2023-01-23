@@ -7,7 +7,9 @@ import '../styles/index.less'
 
 export default {
   ...Theme,
-  enhanceApp({ app, siteData }: EnhanceAppContext) {
+  enhanceApp(ctx: EnhanceAppContext) {
+    const { app } = ctx;
+    Theme.enhanceApp(ctx);
     app.use(ui)
     app.use(components)
     if (typeof window !== 'undefined') {
