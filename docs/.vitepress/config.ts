@@ -41,7 +41,9 @@ export default defineConfig({
       text: '🌎 杂谈',
       link: getFirstDocLink('others')
     }],
-    sidebar: autoGenerateSidebar() as any,
+    sidebar: {
+      ...autoGenerateSidebar() as any,
+    },
     socialLinks: [{
       icon: 'github',
       link: 'https://github.com/shoppingzh'
