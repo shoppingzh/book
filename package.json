@@ -15,7 +15,7 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4",
     "vitepress": "1.0.0-alpha.40",
-    "vue": "^3.2.45"
+    "vue": "^3.2.47"
   },
   "scripts": {
     "dev": "vitepress dev docs",
@@ -25,7 +25,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "animate.css": "^4.1.1",
-    "element-plus": "^2.2.28",
+    "element-plus": "^2.2.29",
     "press-util": "0.1.0",
     "typeit": "^8.7.1"
   }
