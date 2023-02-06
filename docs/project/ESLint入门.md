@@ -6,8 +6,9 @@
 **安装**
 
 ```bash
-yarn add -D eslint @types/eslint
-// npm i -D eslint @types/eslint
+pnpm i -D eslint @types/eslint
+# yarn add -D eslint @types/eslint
+# npm i -D eslint @types/eslint
 ```
 
 **配置**
@@ -60,8 +61,9 @@ npx eslint src
 **安装**
 
 ```bash
-yarn add -D eslint @types/eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
-// npm i -D eslint @types/eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+pnpm i -D eslint @types/eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+# yarn add -D eslint @types/eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+# npm i -D eslint @types/eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
 **配置**
