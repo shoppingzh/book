@@ -38,6 +38,9 @@ export default defineConfig({
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
     } */, {
+      text: '🏅 全栈开发',
+      link: getFirstDocLink('fullstack')
+    }, {
       text: '🌎 杂谈',
       link: getFirstDocLink('others')
     }],
