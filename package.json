@@ -25,6 +25,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "animate.css": "^4.1.1",
+    "css-doodle": "^0.33.1",
     "element-plus": "^2.2.29",
     "press-util": "0.1.0",
     "typeit": "^8.7.1"
