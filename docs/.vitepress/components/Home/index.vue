@@ -16,24 +16,19 @@
   </div>
   <div class="fixed z-1 right-[10%] bottom-[10%] md:top-[120px] w-48 h-48 md:w-96 md:h-96">
     <css-doodle>
-      @grid: 14 / 80%;
+      :doodle {
+        @grid: 8 / 90%;
+        @shape: circle;
+      }
 
-      @random {
-        border-left: 1px solid #5d81bc;
-      }
-      @random {
-        border-top: 1px solid #5d81bc;
-      }
-      @random(.25) {
-        background: linear-gradient(
-          @p(#fff, tan, #5d81bc), @lp
-        )
-        50% / @r(60%) @lr
-        no-repeat;
-      }
-      @random {
-        filter: drop-shadow(0 0 10px #fff);
-      }
+      transition: .2s @r(1.5s);
+      border-radius: @pick(100% 0, 0 100%);
+      transform: scale(@r(.25, 1.25));
+
+      background: hsla(
+        calc(240 - 6 * @x * @y),
+        70%, 68%, @r.8
+      );
     </css-doodle>
   </div>
   
