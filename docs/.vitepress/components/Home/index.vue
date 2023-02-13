@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full relative z-[101] px-4">
+  <div class="w-full h-full relative z-[2] px-4">
     <div>
       <div
         ref="el"
@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  <div class="fixed z-100 right-[10%] bottom-[10%] md:top-[120px] w-48 h-48 md:w-96 md:h-96">
+  <div class="fixed z-1 right-[10%] bottom-[10%] md:top-[120px] w-48 h-48 md:w-96 md:h-96">
     <css-doodle>
       @grid: 14 / 80%;
 
