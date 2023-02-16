@@ -23,9 +23,6 @@ export default defineConfig({
       text: '🏡 首页',
       link: '/'
     }, {
-      text: '🌴 技术栈',
-      link: '/fe',
-    }, {
       text: '🍳 JavaScript',
       link: getFirstDocLink('js'),
     }, {
