@@ -31,7 +31,11 @@
       );
     </css-doodle>
   </div>
-  
+
+  <img
+    class="fixed right-1 bottom-1 z-[101] opacity-60"
+    src="https://profile-counter.glitch.me/zhengxiaoping/count.svg">
+
   <!-- <div class="fixed z-[100] right-0 bottom-0 w-[300px] h-[300px] bg-red-500/80 rounded-full translate-x-[100%] translate-y-[100%]
     duration-500 transition-all"
     :class="{ 'translate-x-[50%] translate-y-[50%]': isDone }"  /> -->
