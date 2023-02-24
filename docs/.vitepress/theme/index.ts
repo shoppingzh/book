@@ -4,9 +4,12 @@ import components from '../components'
 import { EnhanceAppContext } from 'vitepress'
 import 'animate.css/animate.min.css'
 import '../styles/index.less'
+import Layout from './Layout.vue'
+import 'virtual:svg-icons-register'
 
 export default {
   ...Theme,
+  Layout,
   enhanceApp(ctx: EnhanceAppContext) {
     const { app } = ctx;
     Theme.enhanceApp(ctx);
