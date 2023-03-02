@@ -1,5 +1,9 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./docs/.vitepress/*"]
+    }
+  },
   "include": ["docs/**/*"],
-  "exclude": ["node_modules"] 
+  "exclude": ["node_modules"],
 }
