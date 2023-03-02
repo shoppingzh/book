@@ -1,7 +1,4 @@
-docs/.vitepress/cache
-
 node_modules
-dist
 yarn.lock
 package-lock.json
 pnpm-lock.yaml
