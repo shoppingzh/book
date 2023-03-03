@@ -70,7 +70,7 @@ onMounted(() => {
 })
 
 function goFe() {
-  router.go('fe')
+  router.go('fullstack/技术栈')
 }
 
 </script>
