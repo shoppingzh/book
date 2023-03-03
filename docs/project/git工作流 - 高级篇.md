@@ -52,3 +52,7 @@ module.exports = {
 ## monorepo最佳实践
 
 <Todo />
+
+## 自动化
+
+<Todo />
