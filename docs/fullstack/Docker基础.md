@@ -79,6 +79,25 @@ docker volume ls
 ![](./images/docker-volume-ls.png)
 
 
+**运行时绑定卷**
+
+方法1：指定卷名（需要先创建卷，如果没创建，docker会自动创建）
+
+```bash
+docker run -d -p 80:80 --mount source=my-volume,target=/usr/share/nginx/html nginx:latest
+```
+
+方法2：自行指定目录（更灵活）
+
+```bash
+docker run -d -p 80:80 --mount type=bind,src=d:/nginx,target=/usr/share/nginx/html nginx:latest
+```
+
+**删除指定卷**
+
+```bash
+docker volumn rm nginx
+```
 
 ### 网络
 
