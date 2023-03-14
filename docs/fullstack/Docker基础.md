@@ -1,5 +1,16 @@
 # Docker基础
 
+## 安装Docker
+
+推荐以Windows作为入门Docker的平台，因为Windows版的Docker Desktop有很良好的界面，对于新手而言非常友好。
+
+下载链接：[https://www.docker.com/](https://www.docker.com/)
+
+## 理解镜像与容器的关系
+
+<Todo />
+
+
 ## 知识体系
 
 ![](./images/docker-mind.png)
