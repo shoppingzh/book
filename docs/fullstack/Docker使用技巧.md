@@ -1,6 +1,10 @@
 # Docker使用技巧
 
 
+## 知识体系
+
+![](./images/docker-mind.png)
+
 
 ## 制作镜像
 
