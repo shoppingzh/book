@@ -18,7 +18,7 @@ export default defineConfig({
     logo: '/logo.svg',
     lastUpdatedText: '最近更新于',
     outlineTitle: '目录',
-    outline: [2, 4],
+    outline: [2, 6],
     nav: [{
       text: '🏡 首页',
       link: '/'
