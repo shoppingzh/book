@@ -124,7 +124,34 @@ docker run -d -p 80:80 nginx:latest
 最后，打开 `http://localhost` ，就可以食用你的美食了！
 
 
+## 制作自己的“菜谱”
+
+前面我们说过，镜像是菜谱，Docker是厨师，容器是菜，那我们能不能让Docker在做菜的时候放点其他调料呢？不能。厨师会忠实地按照菜谱做菜，并不会改造菜谱。那如何做一份定制的鱼香茄子呢？你需要执行以下步骤：
+
+1. 按照鱼香茄子的菜谱，制作一份自己的菜谱（例如在出锅前放一勺糖）；
+2. 吩咐厨师，按照自己的菜谱做菜，做出符合自己口味的鱼香茄子。
+
+这个制作定制菜谱的过程就是 **镜像制作** 。
+
 ## 不如？现在就来运行一个博客？
+
+首先，我们需要运行一个数据库来存储我们博客的数据，不如就mysql吧。打开命令行运行命令：
+
+```bash
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=blog mysql:latest
+```
+
+::: details 命令详解：
+- `-d` 后台运行
+- `-p 3306:3306` 暴露端口，将内部3306端口映射到本机3306端口（如果本机存在mysql并已运行，则会发生端口占用报错）
+- `-e MYSQL_ROOT_PASSWORD=root` 设置mysql的root用户密码为 `root`
+- `-e MYSQL_DATABASE=blog` 设置mysql默认数据库，这里设置为blog，会自动创建
+- `mysql:latest` 使用mysql的latest版本作为镜像
+:::
+
+mysql容器运行后，你可以通过例如Navicat等数据库客户端连接，因为它的端口已经暴露到了本机。
+
+接下来，我们来运行一个node服务器并连接mysql。
 
 <Todo />
 
