@@ -133,6 +133,23 @@ docker run -d -p 80:80 nginx:latest
 
 这个制作定制菜谱的过程就是 **镜像制作** 。
 
+镜像制作需要的核心元素就是 `Dockerfile`，相信你曾经不止一次看到过它，它就是“菜谱”，用来描述你定制的这道菜的制作过程。让我们来看一个简单的例子：
+
+```docker
+FROM nginx:latest
+
+COPY . /usr/share/nginx/html
+```
+
+- `FROM nginx:latest` 基于nginx镜像制作新的镜像，好比基于鱼香茄子的菜谱制作自己的鱼香茄子菜谱
+- `COPY . /usr/share/nginx/html` 将目录内容拷贝到nginx的入口目录，这样未来运行nginx时，就能跑起自己的项目了
+
+接下来，你需要开始制作镜像：
+
+```
+docker build -t mynginx:latest .
+```
+
 ## 不如？现在就来运行一个博客？
 
 首先，我们需要运行一个数据库来存储我们博客的数据，不如就mysql吧。打开命令行运行命令：
