@@ -170,6 +170,42 @@ mysql容器运行后，你可以通过例如Navicat等数据库客户端连接�
 
 接下来，我们来运行一个node服务器并连接mysql。
 
+我们选择koa作为框架，首先，安装依赖：
+
+```bash
+pnpm i koa mysql2
+# yarn add koa mysql2
+# npm i koa mysql2
+```
+
+在项目根目录下新建 `index.js` ，代码如下：
+
+```js
+const Koa = require('koa')
+const msyql = require('mysql2')
+
+const connection = msyql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  port: 3306,
+  database: 'blog',
+})
+
+const app = new Koa()
+
+app.use(async(ctx) => {
+  return new Promise((resolve, reject) => {
+    connection.query('SHOW DATABASES', (err, result) => {
+      ctx.body = result
+      resolve()
+    })
+  })
+})
+
+app.listen(3000)
+```
+
 <Todo />
 
 ## Docker学习路线
