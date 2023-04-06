@@ -178,36 +178,134 @@ pnpm i koa mysql2
 # npm i koa mysql2
 ```
 
-在项目根目录下新建 `index.js` ，代码如下：
+::: code-group
+```js [db.js]
+const mysql = require('mysql2')
+const { MYSQL_HOST } = require('./config')
 
-```js
-const Koa = require('koa')
-const msyql = require('mysql2')
+let pool
 
-const connection = msyql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  port: 3306,
-  database: 'blog',
-})
+exports.createPool = function() {
+  pool = mysql.createPool({
+    host: MYSQL_HOST,
+    port: '3306',
+    user: 'root',
+    password: 'xpzheng',
+    database: 'hello',
+    charset: 'utf8mb4',
+  })
+  
+  return pool
+}
 
-const app = new Koa()
-
-app.use(async(ctx) => {
+exports.init = function() {
   return new Promise((resolve, reject) => {
-    connection.query('SHOW DATABASES', (err, result) => {
-      ctx.body = result
-      resolve()
+    pool.getConnection((err, conn) => {
+      if (err) return console.error(err)
+      conn.execute('drop table if exists t_blog;', (err) => {
+        if (err) return reject(err)
+        conn.execute(`create table t_blog (
+          title varchar(255),
+          text text
+        );`, (err2) => {
+          if (err2) return reject(err2)
+          resolve()
+        })
+      })
     })
   })
-})
+}
 
-app.listen(3000)
 ```
 
+```js [index.js]
+const Koa = require('koa')
+const cors = require('@koa/cors')
+const Router = require('@koa/router')
+const { createPool, init } = require('./db')
 
-<Todo />
+const app = new Koa()
+const router = new Router()
+let db
+
+function query(sql) {
+  return new Promise((resolve, reject) => {
+    db.query(sql, (err, results) => {
+      if (err) return reject(err)
+      resolve(results)
+    })
+  })
+}
+
+function execute(sql) {
+  return new Promise((resolve, reject) => {
+    db.getConnection((err, conn) => {
+      if (err) return reject(err)
+      conn.execute(sql, err2 => {
+        if (err2) return reject(err2)
+        resolve()
+      })
+    })
+  })
+}
+
+router.get('/', ctx => {
+  ctx.redirect('hello')
+})
+
+router.get('/hello', ctx => {
+  ctx.body = 'Hello, Koa!'
+})
+
+router.get('/blog/add', async(ctx) => {
+  if (!ctx.query.title || !ctx.query.text) {
+    ctx.body = '请传入标题与内容'
+    return
+  }
+  await execute(`
+    insert into t_blog (title, text) values ('${ctx.query.title}', '${ctx.query.text}')
+  `)
+  ctx.body = true
+})
+
+router.get('/blog/list', async(ctx) => {
+  const result = await query(`select * from t_blog`)
+  ctx.body = result
+})
+
+app
+  .use(cors())
+  .use(router.routes())
+  .use(router.allowedMethods())
+  .use(async(ctx, next) => {
+    next()
+  })
+
+;(async function() {
+  try {
+    db = createPool()
+    await init();
+  } catch (err) {
+    console.error(err)
+  }
+  app.listen(3000)
+})()
+
+```
+
+:::
+
+在 `db.js` 中，我们连接了msyql并创建了 `t_blog` 表。`index.js` 文件中，我们提供了一个添加文章与查询文章列表的接口。
+
+接下来，我们再创建一个vite项目，访问这个node服务，添加或获取文章数据。
+
+最后，将该项目部署在nginx中，访问效果如下：
+
+![](./images/docker-blog.png)
+
+至此，我们将整个博客应用搭建并部署成功了！
+
+> 具体代码请参考：[https://github.com/shoppingzh/learn-docker](https://github.com/shoppingzh/learn-docker)
 
 ## Docker学习路线
 
