@@ -13,19 +13,23 @@ mysqldump -uroot -p --databases sys mysql > bak.sql
 
 运行脚本，则将数据库备份到一个当前日期时间的sql文件下，脚本如下：
 
-```bash
+::: code-group
+```bash [bak.sh]
 now=`date +%Y-%m-%d-%H-%M-%S`
 
 mysqldump -uroot -p --databases sys mysql > bak-$now.sql
 ```
+:::
 
 ## 使用定时工具，定期运行脚本
 
 **第一步：新建cron表达式**
 
-```bash
+::: code-group
+```bash [bak.cron]
 * 6 * * * root run-parts ./bak.sh
 ```
+:::
 
 如以上表达式设置每天6点运行 `bak.sh` 脚本。
 
