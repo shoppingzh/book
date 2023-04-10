@@ -21,4 +21,22 @@ mysqldump -uroot -p --databases sys mysql > bak-$now.sql
 
 ## 使用定时工具，定期运行脚本
 
-<Todo />
+**第一步：新建cron表达式**
+
+```bash
+* 6 * * * root run-parts ./bak.sh
+```
+
+如以上表达式设置每天6点运行 `bak.sh` 脚本。
+
+**第二步：将表达式加入到crontab中**
+
+```bash
+crontab ./bak.cron
+```
+
+**第三步：检查是否添加成功**
+
+```bash
+crontab -l
+```
