@@ -8,15 +8,15 @@
   "license": "MIT",
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/line-clamp": "^0.4.2",
-    "@types/node": "^18.13.0",
-    "autoprefixer": "^10.4.13",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@types/node": "^18.15.11",
+    "autoprefixer": "^10.4.14",
     "less": "^4.1.3",
     "postcss": "^8.4.21",
     "press-util": "0.1.3",
-    "tailwindcss": "^3.2.4",
+    "tailwindcss": "^3.3.1",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitepress": "1.0.0-alpha.40",
+    "vitepress": "^1.0.0-alpha.65",
     "vue": "^3.2.47"
   },
   "scripts": {
@@ -25,10 +25,10 @@
     "build:root": "vitepress build docs --base=/"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.0.10",
+    "@element-plus/icons-vue": "^2.1.0",
     "animate.css": "^4.1.1",
     "css-doodle": "^0.33.1",
-    "element-plus": "^2.2.29",
+    "element-plus": "^2.3.3",
     "medium-zoom": "^1.0.8",
     "typeit": "^8.7.1"
   }
