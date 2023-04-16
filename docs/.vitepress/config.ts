@@ -23,6 +23,9 @@ export default defineConfig({
       text: '🏡 首页',
       link: '/'
     }, {
+      text: '🛸 个人作品',
+      link: '/个人作品'
+    }, {
       text: '🍳 JavaScript',
       link: getFirstDocLink('js'),
     }, {
