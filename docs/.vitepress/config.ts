@@ -24,7 +24,7 @@ export default defineConfig({
       link: '/'
     }, {
       text: '🛸 个人作品',
-      link: '/个人作品'
+      link: '/works'
     }, {
       text: '🍳 JavaScript',
       link: getFirstDocLink('js'),
