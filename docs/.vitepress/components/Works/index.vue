@@ -14,7 +14,7 @@
             hover:shadow-xl hover:border-transparent hover:-translate-y-1
           "
           @click="open(item)">
-          <div class="h-[120px] bg-cover bg-no-repeat border-b border-b-gray-200" :style="{ 'background-image': `url(${logos[item.logo] || logos['default']})` }"></div>
+          <div class="h-[140px] bg-cover bg-no-repeat border-b border-b-gray-200 bg-center" :style="{ 'background-image': `url(${logos[item.logo] || logos['default']})` }"></div>
           <div class="p-4">
             <div class="text-md font-semibold">{{ item.name }}</div>
             <div class="mt-4 text-secondary text-sm">{{ item.description || '&nbsp;' }}</div>
