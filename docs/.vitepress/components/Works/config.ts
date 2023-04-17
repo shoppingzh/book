@@ -20,7 +20,7 @@ export default {
     }, {
       name: 'vitepress-template',
       description: 'Vitepress模板，快速搭建文档中心',
-      url: 'https://github.com/shoppingzh/vitepress-template',
+      url: 'https://vitepress.zhengxiaoping.xyz/',
       logo: 'vitepress-template',
     }, {
       name: 'vue-relaxed-admin',
