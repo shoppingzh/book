@@ -6,7 +6,7 @@
       <div
         v-for="(item, index2) in group.items"
         :key="item.name"
-        class="mb-2 px-[2px] w-[50%] md:w-[240px] shrink-0">
+        class="mb-2 px-1 w-[50%] md:w-[240px] shrink-0">
         <div
           class="
             h-full rounded-lg overflow-hidden transition-all duration-300 cursor-pointer
@@ -14,8 +14,8 @@
             hover:shadow-xl hover:border-transparent hover:-translate-y-1
           "
           @click="open(item)">
-          <div class="h-[140px] bg-cover bg-no-repeat border-b border-b-gray-200 bg-center" :style="{ 'background-image': `url(${logos[item.logo] || logos['default']})` }"></div>
-          <div class="p-4">
+          <div class="h-[120px] md:h-[140px] bg-cover bg-no-repeat border-b border-b-gray-200 bg-center" :style="{ 'background-image': `url(${logos[item.logo] || logos['default']})` }"></div>
+          <div class="p-2 md:p-4">
             <div class="text-md font-semibold">{{ item.name }}</div>
             <div class="mt-4 text-secondary text-sm">{{ item.description || '&nbsp;' }}</div>
             <div class="mt-2 text-right">
