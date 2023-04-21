@@ -11,7 +11,8 @@ export default defineConfig({
   description: '晓平写文字的地方',
   lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }]
+    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }]
   ],
 
   themeConfig: {
