@@ -12,7 +12,8 @@ export default defineConfig({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
-    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }]
+    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
+    ['script', { src: '/sw-launcher.js' }]
   ],
 
   themeConfig: {
