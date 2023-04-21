@@ -13,7 +13,6 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
     ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
-    ['script', { src: '/sw-launcher.js' }]
   ],
 
   themeConfig: {

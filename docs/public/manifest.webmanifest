@@ -1,6 +1,6 @@
 {
-  "background_color": "purple",
-  "description": "Shows random fox pictures. Hey, at least it isn't cats.",
+  "background_color": "#fff",
+  "description": "晓平写文字的地方",
   "display": "fullscreen",
   "icons": [
     {
@@ -9,7 +9,7 @@
       "type": "image/png"
     }
   ],
-  "name": "Awesome fox pictures",
-  "short_name": "Foxes",
+  "name": "Xpzheng's blog",
+  "short_name": "Xpzheng's blog",
   "start_url": "/index.html"
 }
