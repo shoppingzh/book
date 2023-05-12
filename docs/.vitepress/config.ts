@@ -15,7 +15,7 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
   ],
   rewrites: {
-    'fullstack/技术栈': 'fullstack/前端技术栈',
+    'docs/fullstack/技术栈.md': 'docs/fullstack/前端技术栈.md',
   },
 
   themeConfig: {
