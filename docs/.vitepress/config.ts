@@ -14,6 +14,9 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/logo.svg' }],
     ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
   ],
+  rewrites: {
+    'fullstack/技术栈': 'fullstack/前端技术栈',
+  },
 
   themeConfig: {
     logo: '/logo.svg',
