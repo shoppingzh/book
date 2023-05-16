@@ -5,8 +5,7 @@
         <svg-icon name="huojian" class="text-2xl" />
       </el-backtop>
     </template>
-    <template #doc-before>
-      <DocBefore />
+    <template #doc-top>
     </template>
   </Layout>
 </template>
