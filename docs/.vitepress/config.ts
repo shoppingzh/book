@@ -21,18 +21,15 @@ export default defineConfig({
     outlineTitle: '目录',
     outline: [2, 6],
     nav: [{
-      text: '🏡 首页',
-      link: '/'
-    }, {
       text: '🛸 个人作品',
       link: '/works'
     }, {
       text: '🍳 JavaScript',
       link: getFirstDocLink('js'),
-    }, {
+    }/* , {
       text: '🍭 CSS',
       link: getFirstDocLink('css'),
-    }, {
+    } */, {
       text: '🍔 工程化',
       link: getFirstDocLink('project')
     }/* , {
