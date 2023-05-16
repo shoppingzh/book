@@ -4,6 +4,9 @@
       <el-backtop>
         <svg-icon name="huojian" class="text-2xl" />
       </el-backtop>
+      <div class="fixed left-1 bottom-1 z-[1000] opacity-70">
+        <img src="https://profile-counter.glitch.me/xpzhengblog/count.svg" class="w-[100px]">
+      </div>
     </template>
     <template #doc-top>
     </template>
