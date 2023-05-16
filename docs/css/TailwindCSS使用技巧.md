@@ -1,4 +1,4 @@
 
-<script>
-  location.pathname = '/fullstack/TailwindCSS使用技巧.html'
-</script>
+<ClientOnly>
+  <Redirect url="/fullstack/TailwindCSS使用技巧.html" />
+</ClientOnly>
