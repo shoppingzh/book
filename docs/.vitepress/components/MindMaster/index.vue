@@ -1,22 +1,29 @@
 <template>
-  <iframe
-    v-if="windowWidth != null"
-    :width="windowWidth"
-    height="4000px"
+  <!-- <iframe
     class="border-none outline-none"
-    :src="src"></iframe>
+    :src="src"
+    width="100%"
+    height="1000"
+    v-bind="$attrs"></iframe> -->
+  <img :src="src">
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive } from 'vue';
 
-const windowWidth = ref()
+const docSize = reactive({
+  width: null,
+  height: null,
+})
 
 defineProps({
   src: String,
 })
 
 onMounted(() => {
-  windowWidth.value = (window.innerWidth || document.documentElement.clientWidth) - 20
+  const el = document.querySelector('.VPDoc > .container > .content .content-container')
+  if (!el) return
+  docSize.width = el.clientWidth
+  docSize.height = el.clientHeight
 })
 </script>

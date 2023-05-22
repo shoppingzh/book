@@ -44,6 +44,9 @@ export default defineConfig({
     }, {
       text: '☕ 生活',
       link: getFirstDocLink('life')
+    }, {
+      text: '历史',
+      link: getFirstDocLink('history')
     }],
     sidebar: {
       ...autoGenerateSidebar() as any,
