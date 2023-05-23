@@ -65,6 +65,9 @@ export default defineConfig({
     }],
     footer: {
       copyright: 'Copyright © 2022 Xiao'
+    },
+    search: {
+      provider: 'local'
     }
   }
 })

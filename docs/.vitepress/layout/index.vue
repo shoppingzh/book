@@ -37,10 +37,10 @@ onMounted(() => {
 // FIXME 迫不得已，先使用这种办法，待vitepress提供文档插槽后，可重构此代码
 watch(route, () => {
   if (!zoom) return
-  zoom.detach('.VPDoc img')
+  zoom.detach('#VPContent img')
   setTimeout(() => {
-    zoom.attach('.VPDoc img')
-  }, 300)
+    zoom.attach('#VPContent img')
+  }, 500)
 }, { immediate: true })
 
 </script>
