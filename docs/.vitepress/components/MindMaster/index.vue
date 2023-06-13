@@ -1,6 +1,6 @@
 <template>
   <div class="py-10">
-    <div class="px-6 text-xs">
+    <div class="px-2 text-xs">
       <el-link type="primary" :underline="false" @click="handleRefresh">
         <el-icon class="mr-1"><Refresh /></el-icon> 刷新脑图
       </el-link>
@@ -9,7 +9,7 @@
         <el-icon><Connection /></el-icon> 新窗口打开
       </el-link>
     </div>
-    <div v-loading="loading">
+    <div v-loading="loading" class="mt-6">
       <img :src="`${src}?_=${time || ''}`">
     </div>
   </div>
