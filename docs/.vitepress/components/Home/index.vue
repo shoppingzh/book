@@ -17,19 +17,20 @@
   </div>
   <div class="fixed z-1 right-[10%] bottom-[10%] md:top-[120px] w-48 h-48 md:w-96 md:h-96">
     <css-doodle>
-      :doodle {
-        @grid: 8 / 90%;
-        @shape: circle;
-      }
+      @grid: 1x10 / 85%;
 
-      transition: .2s @r(1.5s);
-      border-radius: @pick(100% 0, 0 100%);
-      transform: scale(@r(.25, 1.25));
+      @place: center;
+      @size: calc(@i * 10%);
 
-      background: hsla(
-        calc(240 - 6 * @x * @y),
-        70%, 68%, @r.8
+      border-radius: 50%;
+      border-style: dashed;
+      border-width: calc(@i * 4px);
+      border-color: hsla(
+        calc(20 * @i), 70%, 68%,
+        calc(3 / @i * .8)
       );
+
+      transform: rotate(@r(360deg));
     </css-doodle>
   </div>
 
