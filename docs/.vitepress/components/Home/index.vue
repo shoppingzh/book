@@ -3,14 +3,15 @@
     <div>
       <div
         ref="el"
-        class="text-2xl font-semibold leading-loose tracking-wider transition-all duration-300 ease-in-out"
-        :class="{ 'is-done text-3xl': isDone }">
+        class="text-2xl  leading-loose tracking-wider transition-all duration-300 ease-in-out">
       </div>
       <div v-if="isDone" class="mt-10">
-        <el-button type="primary" class="animate__animated animate__fadeInLeft animate__faster" @click="goFe">
-          <el-icon class="mr-2"><Guide /></el-icon>
+        <div
+          class="animate__animated animate__fadeInLeft animate__faster text-b-primary flex items-center cursor-pointer"
+          @click="goFe">
+          <el-icon class="mr-2 text-lg"><Guide /></el-icon>
           前端工程师技术栈
-        </el-button>
+        </div>
       </div>
     </div>
   </div>
@@ -48,16 +49,18 @@ const el = ref()
 const isDone = ref(false)
 const router = useRouter()
 
+const words = `
+Hello, 我是晓平。
+很高兴与你相遇，一同学习知识。
+希望你能玩得开心！！
+`
+
 onMounted(() => {
   const instance = new TypeIt(el.value, {
     breakLines: true,
     html: true,
-    strings: [
-      'Hello, 我是晓平。',
-      '很高兴与你相遇，一同学习知识。',
-      '希望你能玩得开心！！'
-    ],
-    speed: 50,
+    strings: words.split(/\r?\n/g),
+    speed: 30,
     // loop: true,
     // loopDelay: 15000,
     afterComplete: () => {
