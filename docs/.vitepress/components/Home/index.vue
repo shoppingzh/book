@@ -17,7 +17,7 @@
   </div>
   <div class="fixed z-1 right-[10%] bottom-[10%] md:top-[120px] w-48 h-48 md:w-96 md:h-96">
     <css-doodle>
-      @grid: 1x10 / 85%;
+      @grid: 1x15 / 85%;
 
       @place: center;
       @size: calc(@i * 10%);
