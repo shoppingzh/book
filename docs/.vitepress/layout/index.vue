@@ -21,27 +21,24 @@ export const injectKey = Symbol('Layout')
 // 具体使用参见：https://vitepress.vuejs.org/guide/theme-introduction#extending-the-default-theme
 import Theme from 'vitepress/theme'
 import mediumZoom, { Zoom } from 'medium-zoom'
-import { onMounted, watch } from 'vue'
-import { useRoute } from 'vitepress'
+import { onBeforeMount } from 'vue'
+import { useRoute, onContentUpdated } from 'vitepress'
 
 const { Layout } = Theme
 let zoom: Zoom
 const route = useRoute()
 
-onMounted(() => {
+onBeforeMount(() => {
   zoom = mediumZoom(undefined, {
     background: 'rgba(0, 0, 0, .75)',
   })
 })
 
-// FIXME 迫不得已，先使用这种办法，待vitepress提供文档插槽后，可重构此代码
-watch(route, () => {
+onContentUpdated(() => {
   if (!zoom) return
-  zoom.detach('#VPContent img')
-  setTimeout(() => {
-    zoom.attach('#VPContent img')
-  }, 500)
-}, { immediate: true })
+  zoom.detach('.VPDoc img')
+  zoom.attach('.VPDoc img')
+})
 
 </script>
 
