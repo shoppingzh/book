@@ -22,11 +22,10 @@ export const injectKey = Symbol('Layout')
 import Theme from 'vitepress/theme'
 import mediumZoom, { Zoom } from 'medium-zoom'
 import { onBeforeMount } from 'vue'
-import { useRoute, onContentUpdated } from 'vitepress'
+import { onContentUpdated } from 'vitepress'
 
 const { Layout } = Theme
 let zoom: Zoom
-const route = useRoute()
 
 onBeforeMount(() => {
   zoom = mediumZoom(undefined, {
