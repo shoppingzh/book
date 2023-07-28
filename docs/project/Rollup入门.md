@@ -73,5 +73,7 @@ console.log(config.word)
 
 当构建发生错误时，播放一个警报声。
 
-> 亲测在Windows10版本的VSCode与PowerShell中都无效。
+> 亲测在Windows10版本的VSCode与PowerShell中都无效，但在Mac中可以。
+
+
 
