@@ -67,7 +67,7 @@ console.log(config.word)
 ```
 :::
 
-## @rollup/plugin-beep
+### @rollup/plugin-beep
 
 这是最简单的一个插件，其作用是：
 
