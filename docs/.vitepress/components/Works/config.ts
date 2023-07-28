@@ -33,7 +33,7 @@ export default {
     items: [{
       name: 'magic-hooks',
       description: '魔法Hooks库，更快更高效解决业务问题！',
-      url: 'https://github.com/shoppingzh/magic-hooks',
+      url: 'https://hooks.zhengxiaoping.xyz/',
       logo: 'magic',
     }, {
       name: 'tongpo',
