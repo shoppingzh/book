@@ -224,6 +224,79 @@ if ("production" === 'production') {
 
 但由于Rollup强大的TreeShake能力，将代码简化到了最简模式，因此就变成了上面的样子。如果在Rollup配置中，将TreeShake功能关闭，就会得到理论上的预期输出。
 
+### @rollup/plugin-strip
+
+该插件对构建产物进行瘦身，根据特定规则，删除掉一些不影响使用的垃圾代码。
+
+如以下代码：
+
+```js
+import { merge } from 'lodash'
+
+const result = merge({}, { a: 1, b: 2 })
+
+console.log(result)
+
+export default result
+```
+
+构建产物中，无用的 `console.log` 将会被删除：
+
+```js
+'use strict';
+
+var lodash = require('lodash');
+
+const result = lodash.merge({}, { a: 1, b: 2 });
+
+module.exports = result;
+```
+
+`@rollup/plugin-strip` 插件默认会删除：
+
+- 打印与断言函数
+- `debugger` 语句
+
+你可以根据需要进行自定义配置。
+
+### @rollup/plugin-url
+
+该插件的使用场景是：
+
+有时候，我们的打包内容不一定都是代码，还会有一些静态资源如图片、视频等。尽管可以使用Base64字符串的方式将图片打包为一个js模块，但这无疑会使打包产物膨胀，不适宜图片较大的场景。这个时候，我们希望将静态资源直接复制，并通过URL进行引用。
+
+> 在web应用中，这个插件是必备的基础插件。
+
+在 `rollup.config.js` 中配置：
+
+```js
+export default defineConfig({
+  plugins: [
+    url({
+      limit: 0,
+      destDir: 'dist',
+      publicPath: './',
+      fileName: '[name].[hash][extname]',
+    }),
+  ],
+  // ...
+})
+
+```
+
+在代码中引用时：
+
+```js
+import src from './rollup-logo.svg'
+
+console.log(src) // './rollup-logo.fa90b76ba84c2d17.svg'
+```
+
+
+### @rollup/plugin-terser
+
+该插件对构建产物进行混淆、压缩以生成一个最小的包。
+
 
 ### @rollup/plugin-beep
 
@@ -244,7 +317,7 @@ if ("production" === 'production') {
 ```js [index.js]
 import config from './config.json'
 
-console.log(config.word)
+console.log(config.word) // 'hello'
 ```
 
 ```js [config.json]
@@ -257,3 +330,10 @@ console.log(config.word)
 
 
 
+### @rollup/plugin-data-uri
+
+<Todo />
+
+### @rollup/plugin-image
+
+以Base64的方式引入图片。这种方式会引起构建产物大小急剧膨胀，特别是在图片较大时。
