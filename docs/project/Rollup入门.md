@@ -337,3 +337,8 @@ console.log(config.word) // 'hello'
 ### @rollup/plugin-image
 
 以Base64的方式引入图片。这种方式会引起构建产物大小急剧膨胀，特别是在图片较大时。
+
+## 实战 - 搭建简易web应用脚手架
+
+<Todo />
+
