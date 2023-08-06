@@ -31,22 +31,27 @@ export default defineConfig({
       link: getFirstDocLink('css'),
     } */, {
       text: '🍔 工程化',
-      link: getFirstDocLink('project')
+      link: getFirstDocLink('project'),
+      activeMatch: '/project/',
     }/* , {
       text: 'Vue源码',
       link: getFirstDocLink('source/vue')
     } */, {
       text: '🏅 全栈开发',
-      link: getFirstDocLink('fullstack')
+      link: getFirstDocLink('fullstack'),
+      activeMatch: '/fullstack/',
     }, {
       text: '🌎 杂谈',
-      link: getFirstDocLink('others')
+      link: getFirstDocLink('others'),
+      activeMatch: '/others/',
     }, {
       text: '☕ 生活',
-      link: getFirstDocLink('life')
+      link: getFirstDocLink('life'),
+      activeMatch: '/life/',
     }, {
       text: '⏳ 历史',
-      link: getFirstDocLink('history')
+      link: getFirstDocLink('history'),
+      activeMatch: '/history/',
     }],
     sidebar: {
       ...autoGenerateSidebar() as any,
