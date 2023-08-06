@@ -26,6 +26,7 @@ export default defineConfig({
     }, {
       text: '🍳 JavaScript',
       link: getFirstDocLink('js'),
+      activeMatch: '/js/',
     }/* , {
       text: '🍭 CSS',
       link: getFirstDocLink('css'),
