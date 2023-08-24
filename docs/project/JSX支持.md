@@ -45,7 +45,18 @@ module.exports = {
 
 ```
 
-**3. 
+**3. 如果使用TypeScript，还需要在 `tsconfig.json` 中配置：**
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "vue"
+  }
+}
+```
+
+
 
 **使用**
 
