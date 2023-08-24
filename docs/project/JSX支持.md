@@ -2,7 +2,7 @@
 
 ## Vue3支持JSX
 
-**第一步：安装JSX支持插件**
+**1. 安装JSX支持插件**
 
 ```bash
 pnpm i -D @vitejs/plugin-vue-jsx # pnpm
@@ -27,7 +27,7 @@ export default defineConfig({
 
 ```
 
-**第二步：如果使用了ESLint，开启ESLint对JSX的支持**
+**2. 如果使用了ESLint，开启ESLint对JSX的支持**
 
 ```js
 /** @type {import('eslint').Linter.Config} */
@@ -45,7 +45,9 @@ module.exports = {
 
 ```
 
-**第三步：使用**
+**3. 
+
+**使用**
 
 有两种使用办法，官方推荐的办法是使用 `defineComponent` API：
 
