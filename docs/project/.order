@@ -5,13 +5,15 @@ ESLint vs Prettier
 提交日志规范
 git工作流
 git工作流 - 高级篇
-vue-router技巧
 异步加载脚本
 pnpm workspace使用
 node后端搭建流程
-真正优雅的Vite多页面实战
-Vue单文件setup定义组件名实践
 
+$Vue/Vite$
+Vue单文件setup定义组件名实践
+vue-router技巧
+真正优雅的Vite多页面实战
+JSX支持
 
 $库开发$
 Rollup入门
