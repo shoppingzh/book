@@ -9,7 +9,7 @@
 
 假设服务器托管的文件夹的目录结构是：
 
-- images
+<!-- - images
    - logo.png
    - logo.svg
 - day.txt
@@ -20,38 +20,118 @@
    - exception
       - 4.txt
 - index.html
-- README.txt
+- README.txt -->
+
+![](./images/server-content.png)
 
 接下来，让我们看几个案例：
 
-
-- `http://localhost` -> `index.html`
-   - 当访问 `http://localhost` 或 `http://localhost/` 时，服务器会寻找默认的入口文件，绝大多数服务器会以 `index.html` 为入口文件，因此这里会返回根目录下的 `index.html` 文件。
-- `http://localhost/README.txt` -> `README.txt`
-   - 在根目录下存在 `README.txt` 返回
-- `http://localhost/README` -> 404
-   - 找不到名为 `README` 的文件
-- `http://localhost/images` -> 404
-   - 找不到名为 `images` 的文件
-- `http://localhost/images/logo.png` -> `images/logo.png`
-   - 在 `images` 目录下找到了 `logo.png` 文件，返回
-- `http://localhost/day.txt` -> 404
-   - 尝试寻找根目录下的 `day.txt` 文件，没有找到
-- `http://localhost/day.txt/1.txt` -> `/day.txt/1.txt`
-   - 找到了 `day.txt` 下的 `1.txt` 文件，返回
+| 访问 | 响应 | 解释 |
+| -- |-- |-- |
+| `http://localhost` | `index.html` | 当访问 `http://localhost` 或 `http://localhost/` 时，服务器会寻找默认的入口文件，绝大多数服务器会以 `index.html` 为入口文件，因此这里会返回根目录下的 `index.html` 文件。|
+| `http://localhost/README.txt` | `README.txt` | 在根目录下存在 `README.txt` |
+| `http://localhost/README` | 404 | 找不到名为 `README` 的文件 |
+| `http://localhost/images` | `images/index.html` | 找不到名为 `images` 的文件，但是在 `images` 目录下找到了 `index.html` |
+| `http://localhost/images/logo.png` | `images/logo.png` | 在 `images` 目录下找到了 `logo.png` 文件 |
+| `http://localhost/day.txt` | 404 | 尝试寻找根目录下的 `day.txt` 文件，没有找到 |
+| `http://localhost/day.txt/1.txt` | `/day.txt/1.txt` | 找到了 `day.txt` 下的 `1.txt` 文件 | 
 
 
-## 问题引出
+从上述例子可以基本得出结论：
 
-传统的单页应用只有一个 `index.html` 单页，如果该单页下有一个路由 `/home` ，那么访问的URL是：
+**服务器的URL解析规则很像文件系统，如路径 `/a/b/c` ，服务器会尝试在 `/a/b/` 目录下寻找名为 `c` 的文件。**
+
+此外，
+
+**如果找不到指定的文件，会将URL全部当成目录，尝试在目录下找到 `index.html` 文件并返回，如果没有，则响应404错误。**
+
+除此之外，还有一个新手的一个典型误区，认为文件名后缀与文件内容存在关联关系，实际上，文件名后缀只是一个标识而已，就像有人叫张三，有人叫爱新觉罗·李四，尽管后者看起来好像有点特殊，但是其本质是一致的，只要把人区分开了就达到目的了。正如文件名，不管取什么名字，带不带后缀，都只是一种区分而已。
+
+> 这也就是为什么在同一个目录下新建 `logo.png` 与 `logo.svg` 并不会冲突。
+
+此外，对于静态服务器文件名后缀还有一个重要的意义：**文件名后缀与文件内容的类型有关联**。如请求 `logo.png` ，响应的 `content-type` 响应头为 `image/png` 。 `.png` 与 `image/png` 之间的映射关系就是配置在服务端的。
+
+> 对于具有编程能力的动态服务器来说，文件后缀可有可无，因为动态服务器可以从数据库中获得真实的 `content-type` 并动态写出，这就是为什么很多OSS服务存储的文件并没有后缀名的原因。
+
+
+
+
+
+## 问题引出 - 单页history路由问题
+
+现在，你有一个单页应用（不限框架），单页下配置了路由，且路由类型为history。
+
+在单页下，有一个 `/home` 路由，因此，完整的访问路径是：
 
 `http://localhost/home`
 
+按照我们前一章的探讨，访问这个URL时，服务器会尝试在根目录查找名为 `home` 的文件，很显然，并没有这个文件，因此会返回404。
 
-为什么无需使用 `http://localhost/index.html` 也可以访问 `index.html` 文件？这其实跟服务器解析的规则有关，在这个例子中，绝大多数服务器的解析过程是：
+![](./images/404.png)
 
-1. 解析到 `/home` URL
-2. 尝试在服务器所托管的资源目录内，寻找名为 `home` 的文件
-3. 没有找到，尝试返回默认HTML页（一般为 `index.html`）
-4. 找到 `index.html` 文件，返回
+没错，如果保持nginx服务器的默认配置，你将永远无法请求到 `index.html` 下的 `/home` 路由！
+
+为了解决这个问题，你有可能会想到一个方案，访问这个URL：
+
+`http://localhost/index.html/home`
+
+但是又如前面所述，这个URL会让服务器尝试寻找 `index.html` 目录下的 `home` 文件，但是并没有这个文件，因此，还是404！
+
+> 有人可能会觉得访问 `http://localhost/index.html/home` ，服务器会识别 `index.html` 是一个文件，并返回这个文件。这还是陷入了有后缀名是文件，无后缀名是目录的这种误区。
+
+经过两轮尝试，基本可以确定的是，调整访问方式并不能达到想要的目的，此时我们需要调整服务器配置来实现。我们希望：
+
+**当服务器找不到文件时，返回一个默认的文件，将这个默认文件指向 `index.html` ，这样就能使得单页应用与路由都工作正常。**
+
+于是，我们在nginx的配置中找到一项配置：`try_files`。更改 `nginx.conf` 配置:
+
+```
+location / {
+   root   /usr/share/nginx/html;
+   index  index.html index.htm;
+   try_files $uri $uri/ /index.html;
+}
+```
+
+简单来说，这个配置可以达到的效果是：
+
+**当访问以 `/` 开头的URL时，如果没有找到想要的文件，会返回 `root` 配置下 `/index.html` 文件。**
+
+因此，当访问 `http://localhost/home` ，符合以 `/` 开头的条件，并且没有找到 `home` 文件，因此会返回 `index.html` 文件。
+
+当 `index.html` 文件加载时，会启动Vue（或React或其他）应用，并挂载路由，由于路由也是从 `/` 开始解析，因此解析 `/home` 路径是正常的。
+
+以上所述为单页应用history路由的解决方案。
+
+## 问题深入 - 多页history路由问题
+
+前面说过，单页history的解决方案是：将本来会发生404的路由URL转向 `index.html` 文件并使用单页路由重新解析路径，从而得到正确的页面内容。
+
+但是，如果我们的应用是多页的，除了 `index.html` 外，还有一个 `dev.html` ，该怎么让它像单页应用一样工作这个正常？
+
+经过前面的探索，很显然，我们并不能通过 `http://localhost/dev.html/home` 的方式来访问到 `dev` 单页。这种访问方式还是会返回 `index.html`，因为它同时满足以 `/` 开头和访问404的条件。
+
+在多页的场景下，我们的目标是：
+
+**将所有以 `/dev` 开头的请求指向 `dev.html` 文件。**
+
+于是，在 `nginx.conf` 继续添加配置：
+
+```
+location /dev {
+   root /usr/share/nginx/html;
+   index index.html index.htm;
+   try_files $uri $uri/ /dev.html;
+}
+```
+
+其实，这里的配置本质与前一章中单页history的配置是一致的，思路都是：**将指定规则下的请求URL，当请求404时，指向一个默认的html入口文件。**
+
+
+
+## Vite多页history配置的终极解决方案
+
+通过 `http://localhost/dev/home` 的方式来访问 `dev` 单页下的路由，既屏蔽了 `.html` 后缀，又完美实现了history路由，是多页应用在路由配置层面灵活度增大的表现。
+
+<Todo />
 
