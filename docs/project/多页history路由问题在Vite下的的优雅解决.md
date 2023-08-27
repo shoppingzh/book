@@ -127,7 +127,9 @@ location /dev {
 
 其实，这里的配置本质与前一章中单页history的配置是一致的，思路都是：**将指定规则下的请求URL，当请求404时，指向一个默认的html入口文件。**
 
+当我们访问 `http://localhost/dev/home` 时，服务器发生如下解析过程:
 
+- URL以 `/dev` 开头，尝试在
 
 ## Vite多页history配置的终极解决方案
 
