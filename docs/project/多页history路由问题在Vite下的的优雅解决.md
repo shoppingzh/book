@@ -9,18 +9,6 @@
 
 假设服务器托管的文件夹的目录结构是：
 
-<!-- - images
-   - logo.png
-   - logo.svg
-- day.txt
-   - 1.txt
-   - 2.txt
-   - 3.txt
-   - 5.txt
-   - exception
-      - 4.txt
-- index.html
-- README.txt -->
 
 ![](./images/server-content.png)
 
@@ -52,8 +40,6 @@
 此外，对于静态服务器文件名后缀还有一个重要的意义：**文件名后缀与文件内容的类型有关联**。如请求 `logo.png` ，响应的 `content-type` 响应头为 `image/png` 。 `.png` 与 `image/png` 之间的映射关系就是配置在服务端的。
 
 > 对于具有编程能力的动态服务器来说，文件后缀可有可无，因为动态服务器可以从数据库中获得真实的 `content-type` 并动态写出，这就是为什么很多OSS服务存储的文件并没有后缀名的原因。
-
-
 
 
 
@@ -107,9 +93,6 @@ location / {
 
 其中特别要提到的是路由的解析规则，以Vue Router为例，如果没有配置 `base` 参数，则默认 `base` 为 `/` ，即从域名（或端口）后开始解析，也即 `location.pathname` 。
 
-<!-- 因此，当访问 `http://localhost/home` ，符合以 `/` 开头的条件，并且没有找到 `home` 文件，因此会返回 `index.html` 文件。 -->
-
-<!-- 当 `index.html` 文件加载时，会启动Vue（或React或其他）应用，并挂载路由，由于路由也是从 `/` 开始解析，因此解析 `/home` 路径是正常的。 -->
 
 以上所述为单页应用history路由的解决方案。
 
