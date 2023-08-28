@@ -97,9 +97,19 @@ location / {
 
 **当访问以 `/` 开头的URL时，如果没有找到想要的文件，会返回 `root` 配置下 `/index.html` 文件。**
 
-因此，当访问 `http://localhost/home` ，符合以 `/` 开头的条件，并且没有找到 `home` 文件，因此会返回 `index.html` 文件。
+访问到 `index.html` 后，这个单页应用发生了这些事情：
 
-当 `index.html` 文件加载时，会启动Vue（或React或其他）应用，并挂载路由，由于路由也是从 `/` 开始解析，因此解析 `/home` 路径是正常的。
+1. 执行该单页下引入的script脚本
+2. 启动一个Vue（或React或其他）的应用
+3. 挂载路由，启动路由
+4. 路由解析 `/home`，返回对应视图
+5. 用户看到 `index` 单页下的 `/home` 路由内容
+
+其中特别要提到的是路由的解析规则，以Vue Router为例，如果没有配置 `base` 参数，则默认 `base` 为 `/` ，即从域名（或端口）后开始解析，也即 `location.pathname` 。
+
+<!-- 因此，当访问 `http://localhost/home` ，符合以 `/` 开头的条件，并且没有找到 `home` 文件，因此会返回 `index.html` 文件。 -->
+
+<!-- 当 `index.html` 文件加载时，会启动Vue（或React或其他）应用，并挂载路由，由于路由也是从 `/` 开始解析，因此解析 `/home` 路径是正常的。 -->
 
 以上所述为单页应用history路由的解决方案。
 
@@ -107,13 +117,13 @@ location / {
 
 前面说过，单页history的解决方案是：将本来会发生404的路由URL转向 `index.html` 文件并使用单页路由重新解析路径，从而得到正确的页面内容。
 
-但是，如果我们的应用是多页的，除了 `index.html` 外，还有一个 `dev.html` ，该怎么让它像单页应用一样工作这个正常？
+但是，如果我们的应用是多页的，除了 `index.html` 外，还有一个 `dev.html` ，但是上面的配置方法只能配置一个默认的返回文件，该怎么让它像单页应用一样工作这个正常？
 
 经过前面的探索，很显然，我们并不能通过 `http://localhost/dev.html/home` 的方式来访问到 `dev` 单页。这种访问方式还是会返回 `index.html`，因为它同时满足以 `/` 开头和访问404的条件。
 
 在多页的场景下，我们的目标是：
 
-**将所有以 `/dev` 开头的请求指向 `dev.html` 文件。**
+**将所有以 `/dev` （这个路径可以根据用户的需要灵活配置，不一定是单页名称）开头的请求指向 `dev.html` 文件。**
 
 于是，在 `nginx.conf` 继续添加配置：
 
@@ -135,5 +145,93 @@ location /dev {
 
 通过 `http://localhost/dev/home` 的方式来访问 `dev` 单页下的路由，既屏蔽了 `.html` 后缀，又完美实现了history路由，是多页应用在路由配置层面灵活度增大的表现。
 
-<Todo />
+经过以上的讨论，基本把多页应用history路由问题在nginx上的解决方案给剖析得很清楚了，接下来，我们讨论一个更为棘手的问题：
+
+**开发阶段也是托管在静态服务器中的，也面临多页history路由访问的经典问题，该怎么解决？**
+
+以下，将从Vite为例讲解在开发阶段的解决方案，其思路与nginx基本无异，将指定路径开头的请求指向不同的html文件。
+
+首先，我们需要关注一个库：[connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback)
+
+这个库的作用就是实现请求的重写，让我们看一下它的玩法：
+
+```js
+import history from 'connect-history-api-fallback'
+
+history({
+   rewrites: [
+      { from: /\/dev/, to: '/dev.html' }
+   ],
+   htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+})
+```
+
+上述的配置将满足这两个条件的请求进行转发：
+
+- `Accept` 请求头携带了 `text/html` 或 `application/xhtml+xml`
+- 请求路径以 `/dev` 开头
+
+满足上述两个条件的请求，响应会返回根目录下的 `dev.html` 文件。
+
+在Vite中，通过插件的方式，我们可以将这个中间件加入到Vite的开发服务器中，请看代码（`vite.config.ts`）：
+
+```ts
+function historyPlugin() {
+  return {
+    name: 'vite-plugin-history',
+      configureServer(server) {
+        server.middlewares.use(history({
+          rewrites: [
+            { from: /\/dev/, to: '/dev.html' }
+          ],
+          htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+        }))
+      }
+   }
+}
+
+export default defineConfig({
+   plugins: [
+      historyPlugin()
+   ]
+})
+```
+
+Vite插件提供了一个配置开发服务器的特有钩子，我们在这个阶段介入到开发服务器配置，去实现想要的功能。
+
+
+
+## 最佳实践
+
+综上，已将单页、多页history路由问题的引发原因与解决方案抽丝剥茧般讲解完毕。接下来，我们说点与实践相关的，防止在开发过程中不慎落入陷阱。
+
+### 不要简单以单页名称作为转发的路径匹配规则
+
+假设你有两个单页：
+
+- index.html
+- dev.html
+
+在配置请求路径重写时，很多人会选择：
+
+`/dev` -> `dev.html`
+
+这种方式简单、直观，是最容易想到的方案。但是！这其中有坑。
+
+试想一个问题：如果 `index.html` 单页下，有一个路由为 `/dev` ，此时访问 `http://localhost/dev` 该当如何？
+
+答案是：永远都会转发到 `dev.html` ，而无法进入到 `index.html` 单页的 `/dev` 路由！
+
+原理很简单，请求路径的重写发生在单页路由解析之前。
+
+> 有人可能会觉得，自己的单页中不会取与其他单页名称相同的路由。这显然是一种莫名其妙的自信，因为单页的命名与单页下路由的命名是自由的，提前预知不会与他人的命名习惯发生冲突，这显然是不可能的。
+
+因此，为了防止因为同名引起的冲突，我们可以使用这两个方案：
+
+- 除 `index.html` 单页外，其他单页，使用特定规则的名称，如 `mpaDev.html`
+- 在重写规则方面入手，将 `/mpa/dev` 转发到 `dev.html`
+
+以上两个方案的本质都是通过加入特定的名称空间来防止命名冲突。
+
+
 
