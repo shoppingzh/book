@@ -1,5 +1,4 @@
 $基础$
-Babel入门
 ESLint入门
 ESLint vs Prettier
 提交日志规范
@@ -8,6 +7,10 @@ git工作流 - 高级篇
 异步加载脚本
 pnpm workspace使用
 node后端搭建流程
+
+$代码转译$
+Babel入门
+
 
 $Vue/Vite$
 Vue单文件setup定义组件名实践
