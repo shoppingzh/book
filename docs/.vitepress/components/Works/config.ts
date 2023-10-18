@@ -12,23 +12,6 @@ interface Group {
 
 export default {
   groups: [{
-    name: '模板',
-    items: [{
-      name: 'rollup-lib-template',
-      description: '开箱即用的Rollup库打包模板，提供常用的打包配置。',
-      url: 'https://github.com/shoppingzh/rollup-lib-template'
-    }, {
-      name: 'vitepress-template',
-      description: 'Vitepress模板，快速搭建文档中心',
-      url: 'https://vitepress.zhengxiaoping.xyz/',
-      logo: 'vitepress-template',
-    }, {
-      name: 'vue-relaxed-admin',
-      description: '开箱即用的中后台模板',
-      url: 'https://vue.zhengxiaoping.xyz/',
-      logo: 'vue-relaxed-admin',
-    }]
-  }, {
     name: '工具',
     items: [{
       name: 'magic-hooks',
@@ -60,6 +43,31 @@ export default {
       name: 'press-util',
       description: 'Vitepress/Vuepress支撑工具',
       url: 'https://github.com/shoppingzh/press-util',
+    }]
+  }, {
+    name: '模板',
+    items: [{
+      name: 'rollup-lib-template',
+      description: '开箱即用的Rollup库打包模板，提供常用的打包配置。',
+      url: 'https://github.com/shoppingzh/rollup-lib-template'
+    }, {
+      name: 'vitepress-template',
+      description: 'Vitepress模板，快速搭建文档中心',
+      url: 'https://vitepress.zhengxiaoping.xyz/',
+      logo: 'vitepress-template',
+    }, {
+      name: 'vue-relaxed-admin',
+      description: '开箱即用的中后台模板',
+      url: 'https://vue.zhengxiaoping.xyz/',
+      logo: 'vue-relaxed-admin',
+    }]
+  }, {
+    name: '产品',
+    items: [{
+      name: '孔明工具箱',
+      description: '孔明工具箱，解决你在工作中的常见问题',
+      url: 'http://121.43.102.41',
+      logo: 'kongming',
     }]
   }] as Group[]
 }
