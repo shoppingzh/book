@@ -15,10 +15,10 @@
             hover:shadow-xl hover:border-transparent hover:-translate-y-1
           "
           @click="open(item)">
-          <div class="h-[120px] md:h-[140px] bg-cover bg-no-repeat bg-center" :style="{ 'background-image': `url(${logos[item.logo] || logos['default']})` }"></div>
+          <div class="h-[110px] md:h-[140px] bg-cover bg-no-repeat bg-center" :style="{ 'background-image': `url(${logos[item.logo] || logos['default']})` }"></div>
           <div class="flex-1 p-2 md:p-4 border border-gray-300 dark:border-gray-900">
             <div class="text-md font-semibold">{{ item.name }}</div>
-            <div class="mt-4 text-secondary text-sm">{{ item.description || '&nbsp;' }}</div>
+            <div class="mt-2 text-secondary text-sm">{{ item.description || '&nbsp;' }}</div>
             <!-- <div class="mt-2 text-right">
               <el-link type="primary" :underline="false">
                 <el-icon><Right /></el-icon>
