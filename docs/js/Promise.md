@@ -171,3 +171,7 @@ export default class MyPromise<T> {
 
 
 ```
+
+## 跑通官方872个测试用例
+
+![](./images/promise-872.png)
