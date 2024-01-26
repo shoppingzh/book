@@ -1,6 +1,50 @@
 # ESLint入门
 
 
+## 概念扫盲
+
+**Rules**
+
+校验规则，其作用是校验JavaScript语法，如：
+
+```js
+{
+  rules: {
+    semi: [1, 'always']
+  }
+}
+```
+
+以上规则表示代码必须以分号结尾，如果没有以分号结尾，将发出警告。
+
+**Processors**
+
+处理器，其作用是将其他类型的文件转为JavaScript代码，然后执行JavaScript的代码校验。
+
+例如 `eslint-plugin-markdown` 这个库，支持在Markdown文档中，使用eslint校验代码块中的代码。
+
+
+**Parsers**
+
+解析器，其作用是将任意类型的代码解析为抽象语法树（AST），例如 `@typescript-eslint/parser` 将TypeScript代码转换为JavaScript AST。
+
+<!-- ::: danger 处理器与解析器的差别
+处理器是将
+::: -->
+
+
+
+**Plugins**
+
+插件，一般用来整合各个设施，可以包含：
+
+- Rules 规则
+- Configurations 配置
+- Processors 处理器
+- Environments 环境
+
+
+
 ## 基本使用
 
 **安装**
