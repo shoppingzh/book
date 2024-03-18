@@ -9,15 +9,15 @@
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/line-clamp": "^0.4.4",
-    "@types/node": "^18.18.8",
-    "autoprefixer": "^10.4.16",
+    "@types/node": "^18.19.24",
+    "autoprefixer": "^10.4.18",
     "less": "^4.2.0",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.36",
     "press-util": "0.1.3",
-    "tailwindcss": "^3.3.5",
+    "tailwindcss": "^3.4.1",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitepress": "1.0.0-rc.23",
-    "vue": "^3.3.8"
+    "vitepress": "^1.0.0-rc.45",
+    "vue": "^3.4.21"
   },
   "scripts": {
     "dev": "vitepress dev docs",
@@ -25,12 +25,12 @@
     "build:root": "vitepress build docs --base=/"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.1.0",
+    "@element-plus/icons-vue": "^2.3.1",
     "animate.css": "^4.1.1",
     "css-doodle": "^0.33.1",
     "dayjs": "^1.11.10",
-    "element-plus": "^2.4.2",
-    "medium-zoom": "^1.0.8",
-    "typeit": "^8.7.1"
+    "element-plus": "^2.6.1",
+    "medium-zoom": "^1.1.0",
+    "typeit": "^8.8.3"
   }
 }
